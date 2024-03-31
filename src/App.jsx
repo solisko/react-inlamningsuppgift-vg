@@ -9,7 +9,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Header />
-        <Switch/>
+        <Switch />
       </BrowserRouter>
       <Footer />
     </div>

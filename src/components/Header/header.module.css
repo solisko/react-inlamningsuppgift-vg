@@ -1,17 +1,26 @@
-.navBar{
-    /* width: 100%; */
-    /* height: 200px; */
-    display: flex;
-    padding: 30px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(240, 59, 89);
+.navBar {
+  /* width: 100%; */
+  /* height: 200px; */
+  display: flex;
+  padding: 10px 30px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(240, 59, 89);
+}
+.siteLogoDiv {
+  display: flex;
+  align-items: center;
+}
+.siteLogoDiv h1 {
+  font-size: 50px;
 }
 
-.navLinksDiv span{
-    padding: 5px;
-    
+.linksDiv {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
 }
-.navLinksDiv img{
-    width: 40px;
+.cartDiv img {
+  width: 40px;
 }

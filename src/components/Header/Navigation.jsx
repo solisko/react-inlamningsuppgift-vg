@@ -1,22 +1,27 @@
 import { NavLink } from "react-router-dom";
 import styles from "../Header/header.module.css";
+import cart from "../Assets/cart.png"
 
 const Navigation = () => {
   return (
     <nav className={styles.navBar}>
+      <div className={siteNameDiv} >
+
       <h1>YarnHub</h1>
-      <div className={styles.navLinks}>
+      </div>
+      <div className={styles.navLinksDiv}>
         <span>
           <NavLink to="/">Hem</NavLink>
         </span>
-        <span>
+        <button>
           <NavLink to="/create">Skapa konto</NavLink>
-        </span>
-        <span>
+        </button>
+        <button>
           <NavLink to="/login">Logga in</NavLink>
-        </span>
+        </button>
+        <div className={styles.cartDiv}></div>
         <span>
-          <NavLink to="/basket">Varukorg</NavLink>
+          <NavLink to="/basket"><img src={cart} alt="" /></NavLink>
         </span>
       </div>
     </nav>

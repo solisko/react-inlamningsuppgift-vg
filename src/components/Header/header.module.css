@@ -8,7 +8,10 @@
     background-color: rgb(240, 59, 89);
 }
 
-.navLinks span{
+.navLinksDiv span{
     padding: 5px;
     
+}
+.navLinksDiv img{
+    width: 40px;
 }

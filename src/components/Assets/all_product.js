@@ -1,4 +1,4 @@
-[
+const allProducts = [
   {
     yarnID: 1,
     yarnName: "Cotton Deluxe 8/4",
@@ -126,3 +126,4 @@
     yarnNeedles: "6 mm",
   },
 ];
+export default allProducts;

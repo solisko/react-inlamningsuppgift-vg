@@ -10,21 +10,27 @@ const Navigation = () => {
       </div>
       <ul className={styles.linksDiv}>
         <li>
-          <NavLink to="/">Hem</NavLink>
+          <NavLink style={{ textDecoration: "none" }} to="/">
+            Hem
+          </NavLink>
         </li>
         <li>
           <button>
-            <NavLink to="/create">Skapa konto</NavLink>
+            <NavLink style={{ textDecoration: "none" }} to="/create">
+              Skapa konto
+            </NavLink>
           </button>
         </li>
         <li>
           <button>
-            <NavLink to="/login">Logga in</NavLink>
+            <NavLink style={{ textDecoration: "none" }} to="/login">
+              Logga in
+            </NavLink>
           </button>
         </li>
       </ul>
       <div className={styles.cartDiv}>
-        <NavLink to="/basket">
+        <NavLink style={{ textDecoration: "none" }} to="/basket">
           <img src={cart} alt="" />
         </NavLink>
       </div>

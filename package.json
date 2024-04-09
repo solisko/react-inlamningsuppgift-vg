@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "mysql2": "^3.9.4",
-    "nodemon": "^3.1.0"
-  }
-}

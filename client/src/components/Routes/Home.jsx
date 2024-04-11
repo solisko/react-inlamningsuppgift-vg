@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./home.module.css";
 
 const Home = () => {
   const { getProductsByCategory } = useContext(ShopContext);
-
+  const navigate = useNavigate();
   const categories = ["cotton", "acrylic", "wool"];
+
+  const handleClick = (productId) => {
+    navigate("/item", { state: { id: productId } });
+  };
 
   return (
     <>
@@ -17,7 +22,13 @@ const Home = () => {
             className={`${styles.categoryWrapper} row flex-nowrap overflow-auto`}
           >
             {getProductsByCategory(category).map((product, index) => (
-              <div className={`${styles.productCard} col-sm-4 p-0`} key={index}>
+              <div
+                onClick={() => {
+                  handleClick(product.yarnID);
+                }}
+                className={`${styles.productCard} col-sm-4 p-0`}
+                key={index}
+              >
                 <img className={styles.image} src="" alt="" />
                 <section className={styles.namePriceSection}>
                   <h3>{product.yarnName}</h3>

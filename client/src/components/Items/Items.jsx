@@ -1,40 +1,72 @@
 import { useContext } from "react";
+import { ShopContext } from "../../Context/ShopContextProvider";
+import { useLocation } from "react-router-dom";
 import styles from "./items.module.css";
 
 const Items = () => {
+  const { items, addToCart, cartItems } = useContext(ShopContext);
+  const location = useLocation();
+  const product = items.filter((prod) => prod.yarnID === location.state.id)[0];
+
+  const amountInCart = cartItems[product.yarnID];
 
   return (
-    <div>
+    <div className={styles.itemWrapper}>
+      <button onClick={() => window.history.back()}>Back to Home</button>
       <div className={styles.itemCard}>
-        <img src="" alt="" />
-        <h2>Namn</h2>
-        <h3>Kategori: </h3>
-        <p>Färger:</p>
-        <ul>
-            <li>Färg1</li>
-            <li>Färg2</li>
-        </ul>
-        <p>Pris: </p>
-        <section className="detailsSection">
-            <table>
+        {product ? (
+          <>
+            <h2>{product.yarnName}</h2>
+            <h5>{product.yarnCategory} </h5>
+            <p>Färger:</p>
+            <ul>
+              {product.yarnColors.map((color, cIndex) => (
+                <li key={cIndex}>{color}</li>
+              ))}
+            </ul>
+            <p>Pris: {product.yarnPrice}</p>
+            <section className="detailsSection">
+              <table>
                 <thead>
-                    <tr>
-                        <th>Vikt</th>
-                        <th>Löplängd</th>
-                        <th>Viktgrupp</th>
-                        <th>Nålar</th>
-                    </tr>
+                  <tr>
+                    <th>Detaljer</th>
+                  </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  <tr>
+                    <td>
+                      <strong>Vikt</strong>
+                    </td>
+                    <td>{product.yarnWeight}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Löplängd</strong>
+                    </td>
+                    <td>{product.yarnLength}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Viktgrupp</strong>
+                    </td>
+                    <td>{product.yarnGroup}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Rekomenderade nålar</strong>
+                    </td>
+                    <td>{product.yarnNeedles}</td>
+                  </tr>
                 </tbody>
-            </table>
-        </section>
+              </table>
+            </section>
+            <button onClick={() => addToCart(product.yarnID)}>
+              Add to cart {amountInCart > 0 && <>({amountInCart})</>}
+            </button>
+          </>
+        ) : (
+          <p>Product not found</p>
+        )}
       </div>
     </div>
   );

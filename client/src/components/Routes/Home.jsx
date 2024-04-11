@@ -5,32 +5,27 @@ import styles from "./home.module.css";
 const Home = () => {
   const { getProductsByCategory } = useContext(ShopContext);
 
-  const cottonProducts = getProductsByCategory("cotton");
-  const acrylicProducts = getProductsByCategory("acrylic");
+  const categories = ["cotton", "acrylic", "wool"];
 
   return (
-    <div>
-      <h1>Bomull</h1>
-      <div className={styles.categoryWrapper}>
-        {cottonProducts.map((product, index) => (
-          <div className={styles.productCard} key={index}>
-            <img className={styles.image} src="" alt="" />
-            <h3>{product.yarnName}</h3>
-            <p>{product.yarnPrice}</p>
+    <>
+      {categories.map((category, categoryIndex) => (
+        <div className={styles.container} key={categoryIndex}>
+          <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+          <div className={styles.categoryWrapper}>
+            {getProductsByCategory(category).map((product, index) => (
+              <div className={styles.productCard} key={index}>
+                <img className={styles.image} src="" alt="" />
+                <section className={styles.namePriceSection} >
+                  <h3>{product.yarnName}</h3>
+                  <p>{product.yarnPrice}</p>
+                </section>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <h1>Akryl</h1>
-      <div className={styles.categoryWrapper}>
-        {acrylicProducts.map((product, index) => (
-          <div className={styles.productCard} key={index}>
-            <img className={styles.image} src="" alt="" />
-            <h3>{product.yarnName}</h3>
-            <p>{product.yarnPrice}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      ))}
+    </>
   );
 };
 

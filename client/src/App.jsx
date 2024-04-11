@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import ShopContextProvider from "./Context/ShopContextProvider";
@@ -7,14 +8,14 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <div>
-      <ShopContextProvider>
-        <BrowserRouter>
-          <Navigation />
-          <Switch />
-        </BrowserRouter>
-        <Footer />
-      </ShopContextProvider>
+    <div className="page-container">
+        <ShopContextProvider>
+          <BrowserRouter>
+            <Navigation />
+            <Switch />
+          </BrowserRouter>
+        </ShopContextProvider>
+      <Footer />
     </div>
   );
 }

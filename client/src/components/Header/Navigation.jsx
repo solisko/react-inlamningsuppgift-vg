@@ -11,20 +11,20 @@ const Navigation = () => {
       <ul className={styles.linksDiv}>
         <li>
           <NavLink style={{ textDecoration: "none" }} to="/">
-            Hem
+            Home
           </NavLink>
         </li>
         <li>
           <button>
             <NavLink style={{ textDecoration: "none" }} to="/create">
-              Skapa konto
+              Create Account
             </NavLink>
           </button>
         </li>
         <li>
           <button>
             <NavLink style={{ textDecoration: "none" }} to="/login">
-              Logga in
+              Log in
             </NavLink>
           </button>
         </li>

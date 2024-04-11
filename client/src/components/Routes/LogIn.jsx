@@ -5,19 +5,15 @@ export default function LogIn() {
     <div className={styles.container}>
       <div className={styles.inputWrapper}>
         <label htmlFor="username" className={styles.labels}>
-          Användarnamn/Epost
+          Username
         </label>
-        <input
-          type="text"
-          placeholder="Användarnamn"
-          className={styles.inputs}
-        />
+        <input type="text" placeholder="Username" className={styles.inputs} />
         <label htmlFor="password" className={styles.labels}>
-          Lösenord
+          Password
         </label>
-        <input type="text" placeholder="Lösenord" className={styles.inputs} />
+        <input type="text" placeholder="Password" className={styles.inputs} />
         <button className={styles.buttons} type="button">
-          Logga in
+          Log in
         </button>
       </div>
     </div>

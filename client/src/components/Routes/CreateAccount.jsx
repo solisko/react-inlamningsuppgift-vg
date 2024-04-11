@@ -30,29 +30,29 @@ export default function CreateAccount() {
     <div className={styles.container} >
       <div className={styles.inputWrapper}>
         <label htmlFor="username" className={styles.labels}>
-          Användarnamn/Epost
+          Username
         </label>
         <input
           type="text"
-          placeholder="Användarnamn"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
           className={styles.inputs}
         />
         <label htmlFor="password" className={styles.labels}>
-          Lösenord
+          Password
         </label>
         <input
           type="text"
-          placeholder="Lösenord"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           className={styles.inputs}
         />
         <button className={styles.buttons} type="button" onClick={handleCreate}>
-          Skapa konto
+          Create account
         </button>
       </div>
     </div>

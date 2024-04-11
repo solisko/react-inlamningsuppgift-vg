@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
+import styles from "./home.module.css";
 
 const Home = () => {
   const { getProductsByCategory } = useContext(ShopContext);
@@ -9,19 +10,23 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <h1>Bomull</h1>
+      <h1>Bomull</h1>
+      <div className={styles.categoryWrapper}>
         {cottonProducts.map((product, index) => (
-          <div key={index}>
-            <p>{product.yarnName}</p>
+          <div className={styles.productCard} key={index}>
+            <img className={styles.image} src="" alt="" />
+            <h3>{product.yarnName}</h3>
+            <p>{product.yarnPrice}</p>
           </div>
         ))}
       </div>
-      <div>
-        <h1>Akryl</h1>
+      <h1>Akryl</h1>
+      <div className={styles.categoryWrapper}>
         {acrylicProducts.map((product, index) => (
-          <div key={index}>
-            <p>{product.yarnName}</p>
+          <div className={styles.productCard} key={index}>
+            <img className={styles.image} src="" alt="" />
+            <h3>{product.yarnName}</h3>
+            <p>{product.yarnPrice}</p>
           </div>
         ))}
       </div>

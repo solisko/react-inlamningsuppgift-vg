@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const mysql = require("mysql2");
 const db = mysql.createConnection({
   user: "root",
@@ -9,9 +10,8 @@ const db = mysql.createConnection({
   database: "webshop_db",
 });
 
-// db.connect;
 app.use(cors());
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 const port = process.env.PORT || 3000;

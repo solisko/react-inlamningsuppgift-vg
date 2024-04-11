@@ -1,0 +1,9 @@
+.categoryWrapper{
+    display: flex;
+}
+
+.image{
+    background-color: azure;
+    width: 200px;
+    height: 200px;
+}

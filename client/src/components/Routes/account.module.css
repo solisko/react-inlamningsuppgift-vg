@@ -1,0 +1,25 @@
+.container{
+    padding-top: 80px;
+    
+}
+.inputWrapper{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 500px;
+    background-color: black;
+    padding: 20px;
+}
+
+.inputs, .buttons, .labels{
+    width: 400px;
+    /* padding: 10px; */
+    margin: 5px;
+}
+.inputs, .buttons{
+    padding: 10px;
+}
+

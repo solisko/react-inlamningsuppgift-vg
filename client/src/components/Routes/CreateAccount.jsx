@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./account.module.css";
 
 export default function CreateAccount() {
   const [username, setUsername] = useState("");
@@ -26,25 +27,31 @@ export default function CreateAccount() {
   };
 
   return (
-    <div>
-      <div>
-        <label htmlFor="username">Användarnamn/Epost</label>
+    <div className={styles.container} >
+      <div className={styles.inputWrapper}>
+        <label htmlFor="username" className={styles.labels}>
+          Användarnamn/Epost
+        </label>
         <input
           type="text"
           placeholder="Användarnamn"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          className={styles.inputs}
         />
-        <label htmlFor="password">Lösenord</label>
+        <label htmlFor="password" className={styles.labels}>
+          Lösenord
+        </label>
         <input
           type="text"
           placeholder="Lösenord"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className={styles.inputs}
         />
-        <button type="button" onClick={handleCreate}>
+        <button className={styles.buttons} type="button" onClick={handleCreate}>
           Skapa konto
         </button>
       </div>

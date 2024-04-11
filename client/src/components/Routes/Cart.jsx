@@ -1,4 +1,4 @@
-export default function Basket() {
+export default function Cart() {
   return (
     <div>hello basket</div>
   )

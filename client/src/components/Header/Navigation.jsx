@@ -30,7 +30,7 @@ const Navigation = () => {
         </li>
       </ul>
       <div className={styles.cartDiv}>
-        <NavLink style={{ textDecoration: "none" }} to="/basket">
+        <NavLink style={{ textDecoration: "none" }} to="/cart">
           <img src={cart} alt="" />
         </NavLink>
       </div>

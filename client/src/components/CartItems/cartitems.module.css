@@ -1,0 +1,14 @@
+.productCard {
+  margin: 20px;
+  width: 300px;
+  height: fit-content;
+  background-color: gray;
+}
+.image {
+  background-color: azure;
+  width: 100%;
+  height: 300px;
+}
+.namePriceSection {
+  margin: 10px;
+}

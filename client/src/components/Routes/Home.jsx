@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       {categories.map((category, categoryIndex) => (
-        <div className={styles.container} key={categoryIndex}>
+        <div key={categoryIndex}>
           <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
           <div
             className={`${styles.categoryWrapper} row flex-nowrap overflow-auto`}

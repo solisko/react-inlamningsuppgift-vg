@@ -9,12 +9,14 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <div className="page-container">
-        <ShopContextProvider>
-          <BrowserRouter>
-            <Navigation />
+      <ShopContextProvider>
+        <BrowserRouter>
+          <Navigation />
+          <div className="content-wrapper">
             <Switch />
-          </BrowserRouter>
-        </ShopContextProvider>
+          </div>
+        </BrowserRouter>
+      </ShopContextProvider>
       <Footer />
     </div>
   );

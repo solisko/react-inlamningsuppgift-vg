@@ -22,6 +22,7 @@ const ShopProvider = (props) => {
   const removeFromCart = (yarnId) => {
     setCartItems((prev) => ({ ...prev, [yarnId]: prev[yarnId] - 1 }));
   };
+
   const getProductsByCategory = (category) => {
     return items.filter((product) => product.yarnCategory === category);
   };

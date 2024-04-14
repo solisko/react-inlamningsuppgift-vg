@@ -32,11 +32,11 @@ app.get("/accounts", (req, res) => {
 });
 
 app.post("/accounts", (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
 
   db.query(
-    "INSERT INTO accounts (username, password) VALUES (?,?);",
-    [username, password],
+    "INSERT INTO accounts (username, email, password) VALUES (?,?,?);",
+    [username, email, password],
     (err, result) => {
       if (err) {
         console.error("Error creating account:", err);
@@ -44,7 +44,7 @@ app.post("/accounts", (req, res) => {
       } else {
         res.status(201).json({
           message: "Account created successfully",
-          account: { username, password },
+          account: { username, email, password },
         });
       }
     }

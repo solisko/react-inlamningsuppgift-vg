@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "./account.module.css";
 
 export default function LogIn() {
@@ -14,6 +15,11 @@ export default function LogIn() {
         <input type="text" placeholder="Password" className={styles.inputs} />
         <button className={styles.buttons} type="button">
           Log in
+        </button>
+        <button>
+          <NavLink style={{ textDecoration: "none" }} to="/create">
+            Create Account
+          </NavLink>
         </button>
       </div>
     </div>

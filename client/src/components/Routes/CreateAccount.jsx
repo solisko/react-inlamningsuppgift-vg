@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./account.module.css";
 
 export default function CreateAccount() {
@@ -34,7 +35,7 @@ export default function CreateAccount() {
         </label>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -45,7 +46,7 @@ export default function CreateAccount() {
         </label>
         <input
           type="text"
-          placeholder="Password"
+          placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -54,6 +55,11 @@ export default function CreateAccount() {
         <button className={styles.buttons} type="button" onClick={handleCreate}>
           Create account
         </button>
+        <button>
+            <NavLink style={{ textDecoration: "none" }} to="/login">
+              Log in
+            </NavLink>
+          </button>
       </div>
     </div>
   );

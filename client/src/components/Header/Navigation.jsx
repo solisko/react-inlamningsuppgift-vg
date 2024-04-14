@@ -6,20 +6,17 @@ const Navigation = () => {
   return (
     <nav className={styles.navBar}>
       <div className={styles.siteLogoDiv}>
-        <h1>YarnHub</h1>
+        <h1>
+          <NavLink style={{ textDecoration: "none" }} to="/">
+            YarnHub
+          </NavLink>
+        </h1>
       </div>
       <ul className={styles.linksDiv}>
         <li>
           <NavLink style={{ textDecoration: "none" }} to="/">
             Home
           </NavLink>
-        </li>
-        <li>
-          <button>
-            <NavLink style={{ textDecoration: "none" }} to="/create">
-              Create Account
-            </NavLink>
-          </button>
         </li>
         <li>
           <button>

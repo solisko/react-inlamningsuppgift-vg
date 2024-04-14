@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "../CartItems/cartitems.module.css";

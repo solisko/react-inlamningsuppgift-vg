@@ -50,3 +50,27 @@ app.post("/accounts", (req, res) => {
     }
   );
 });
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  db.query(
+    "SELECT * FROM accounts WHERE username = ? AND password = ?;",
+    [username, password],
+    (err, result) => {
+      if (err) {
+        console.error("Error logging in:", err);
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        if (result.length > 0) {
+          res.status(200).json({
+            message: "Login successful!",
+            account: { username, password },
+          });
+        } else {
+          res.status(401).json({ error: "Invalid username or password" });
+        }
+      }
+    }
+  );
+});

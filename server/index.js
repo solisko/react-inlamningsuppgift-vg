@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const mysql = require("mysql2");
+const salt = 10;
 
 const db = mysql.createConnection({
   user: "root",
@@ -38,30 +39,32 @@ app.get("/accounts", (req, res) => {
 
 app.post("/accounts", (req, res) => {
   const { username, email, password } = req.body;
-
-  db.query(
-    "INSERT INTO accounts (username, email, password) VALUES (?,?,?);",
-    [username, email, password],
-    (err, result) => {
-      if (err) {
-        console.error("Error creating account:", err);
-        res.status(500).json({ error: "Internal server error" });
-      } else {
-        res.status(201).json({
-          message: "Account created successfully",
-          account: { username, email, password },
-        });
+  bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
+    if (err) return res.json({ Error: "Error for hashing password" });
+    db.query(
+      "INSERT INTO accounts (username, email, password) VALUES (?,?,?);",
+      [username, email, hash],
+      (err, result) => {
+        if (err) {
+          console.error("Error creating account:", err);
+          res.status(500).json({ error: "Internal server error" });
+        } else {
+          res.status(201).json({
+            message: "Account created successfully",
+            account: { username, email, password },
+          });
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   db.query(
-    "SELECT * FROM accounts WHERE username = ? AND password = ?;",
-    [username, password],
+    "SELECT * FROM accounts WHERE username = ?",
+    [username],
     (err, result) => {
       if (err) {
         console.error("Error logging in:", err);
@@ -71,16 +74,22 @@ app.post("/login", (req, res) => {
           res.status(401).json({ error: "Invalid username." });
         } else {
           const user = result[0];
-          if (user.password !== password) {
-            res.status(401).json({ error: "Incorrect password." });
-          } else {
-            res.status(200).json({
-              message: "Login successful",
-              account: { username, password },
-            });
-          }
+          bcrypt.compare(password, user.password, (err, match) => {
+            if (err) {
+              console.error("Error comparing passwords:", err);
+              res.status(500).json({ error: "Internal server error" });
+            } else if (!match) {
+              res.status(401).json({ error: "Incorrect password." });
+            } else {
+              res.status(200).json({
+                message: "Login successful",
+                account: { username },
+              });
+            }
+          });
         }
       }
     }
   );
 });
+

@@ -14,7 +14,7 @@ export default function CartItems({ product }) {
       </section>
       <div>
         <button onClick={() => removeFromCart(product.yarnID)}>-</button>
-        <input type="text" value={cartItems[product.yarnID]} />
+        <span>{cartItems[product.yarnID]}</span>
         <button onClick={() => addToCart(product.yarnID)}>+</button>
       </div>
     </div>

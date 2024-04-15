@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
 const mysql = require("mysql2");
+
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
@@ -10,9 +14,10 @@ const db = mysql.createConnection({
   database: "webshop_db",
 });
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 3000;
 
@@ -62,13 +67,18 @@ app.post("/login", (req, res) => {
         console.error("Error logging in:", err);
         res.status(500).json({ error: "Internal server error" });
       } else {
-        if (result.length > 0) {
-          res.status(200).json({
-            message: "Login successful!",
-            account: { username, password },
-          });
+        if (result.length === 0) {
+          res.status(401).json({ error: "Invalid username." });
         } else {
-          res.status(401).json({ error: "Invalid username or password" });
+          const user = result[0];
+          if (user.password !== password) {
+            res.status(401).json({ error: "Incorrect password." });
+          } else {
+            res.status(200).json({
+              message: "Login successful",
+              account: { username, password },
+            });
+          }
         }
       }
     }

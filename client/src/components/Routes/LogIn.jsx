@@ -5,9 +5,9 @@ import { useState } from "react";
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleCreate = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
@@ -18,54 +18,63 @@ export default function LogIn() {
         },
         body: JSON.stringify({ username, password }),
       });
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(`Failed to create user: ${errorMessage}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successful", data);
+        navigate("/");
+      } else {
+        const errorMessage = await response.json();
+        if (errorMessage.error === "Invalid username.") {
+          alert("Invalid username. Please try again.");
+        } else if (errorMessage.error === "Incorrect password.") {
+          alert("Incorrect password. Please try again.");
+        } else {
+          throw new Error("Failed to log in.");
+        }
       }
-      console.log("Login successful!");
-      navigate("/");
     } catch (error) {
-      console.error("There was an error creating the account:", error.message);
+      console.error("Error logging in:", error.message);
     }
   };
 
   return (
     <div className={styles.container}>
-    <form onSubmit={handleCreate}>
-      <div className={styles.inputWrapper}>
-        <label htmlFor="username" className={styles.labels}>
-          Username
-        </label>
-        <input
-          type="text"
-          placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          className={styles.inputs}
-        />
-        <label htmlFor="password" className={styles.labels}>
-          Password
-        </label>
-        <input
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength="6"
-          className={styles.inputs}
-        />
-        <button className={styles.buttons} type="submit">
-          Log in
-        </button>
-        <button>
-          <NavLink style={{ textDecoration: "none" }} to="/create">
-            Create Account
-          </NavLink>
-        </button>
-      </div>
-    </form>
-  </div>
+      <form onSubmit={handleLogin}>
+        <div className={styles.inputWrapper}>
+          <label htmlFor="username" className={styles.labels}>
+            Username
+          </label>
+          <input
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className={styles.inputs}
+          />
+          <label htmlFor="password" className={styles.labels}>
+            Password
+          </label>
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength="6"
+            className={styles.inputs}
+          />
+          <button className={styles.buttons} type="submit">
+            Log in
+          </button>
+          <button>
+            <NavLink style={{ textDecoration: "none" }} to="/create">
+              Create Account
+            </NavLink>
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -16,7 +16,13 @@ const db = mysql.createConnection({
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -81,9 +87,15 @@ app.post("/login", (req, res) => {
             } else if (!match) {
               res.status(401).json({ error: "Incorrect password." });
             } else {
+              const username = result[0].username;
+              const token = jwt.sign({ username }, "jwt-secret-key-number-1", {
+                expiresIn: "1d",
+              });
+              res.cookie("token", token);
               res.status(200).json({
                 message: "Login successful",
                 account: { username },
+                token: token,
               });
             }
           });
@@ -92,4 +104,3 @@ app.post("/login", (req, res) => {
     }
   );
 });
-

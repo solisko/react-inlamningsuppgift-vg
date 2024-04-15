@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
@@ -25,7 +26,17 @@ app.use(
 );
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(
+  session({
+    key: "userId",
+    secret: "session-secret-key-1",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 60 * 60 * 24,
+    },
+  })
+);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
@@ -54,6 +65,34 @@ app.post("/create", (req, res) => {
   });
 });
 
+const verifyUser = (req, res, next) => {
+  const token = req.headers("x-access-token");
+  if (!token) {
+    res.send("we need a token");
+  } else {
+    jwt.verify(token, "jwt-secret-key-number-1", (err, decoded) => {
+      if (err) {
+        res.json({ auth: false, message: "faild to authenticate" });
+      } else {
+        req.userId = decoded.id;
+        next();
+      }
+    });
+  }
+};
+
+app.get("/profile", verifyUser, (req, res) => {
+  res.send("You are authenticated");
+});
+
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -76,16 +115,18 @@ app.post("/login", (req, res) => {
             } else if (!match) {
               res.status(401).json({ error: "Incorrect password." });
             } else {
-              const username = result[0].username;
-              const token = jwt.sign({ username }, "jwt-secret-key-number-1", {
+              const id = result[0].userId;
+              const token = jwt.sign({ id }, "jwt-secret-key-number-1", {
                 expiresIn: "1d",
               });
-              res.cookie("token", token);
-              res.status(200).json({
-                message: "Login successful",
-                account: { username },
-                token: token,
-              });
+              req.session.user = {
+                userId: result[0].userId,
+                username: result[0].username,
+                email: result[0].email,
+              };
+              console.log(req.session.user);
+
+              res.send({ auth: true, token: token, result: req.session.user });
             }
           });
         }

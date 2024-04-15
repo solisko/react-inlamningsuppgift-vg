@@ -1,10 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ShopContext } from "../../Context/ShopContextProvider";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { loggedIn, setLoggedIn } = useContext(ShopContext);
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -23,8 +26,7 @@ export default function LogIn() {
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful", data);
-        document.cookie = `token=${data.token}; path=/`;
-        navigate("/");
+        navigate("/profile", { state: { username } });
       } else {
         const errorMessage = await response.json();
         if (errorMessage.error === "Invalid username.") {
@@ -39,6 +41,23 @@ export default function LogIn() {
       console.error("Error logging in:", error.message);
     }
   };
+
+  useEffect(() => {
+    fetch("http://localhost:3000/login", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching login data:", error);
+      });
+  }, []);
 
   return (
     <div className={styles.container}>

@@ -12,6 +12,7 @@ const emptyCart = () => {
 };
 
 const ShopProvider = (props) => {
+  const [loggedIn, setLoggedIn]=useState(false);
   const [items, setItems] = useState(allProducts);
   const [cartItems, setCartItems] = useState(emptyCart());
 
@@ -30,6 +31,8 @@ const ShopProvider = (props) => {
   return (
     <ShopContext.Provider
       value={{
+        loggedIn,
+        setLoggedIn,
         items,
         getProductsByCategory,
         cartItems,

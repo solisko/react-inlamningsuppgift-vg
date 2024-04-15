@@ -4,6 +4,7 @@ import CreateAccount from "../Routes/CreateAccount";
 import LogIn from "../Routes/LogIn";
 import Cart from "../Routes/Cart";
 import Items from "../Items/Items";
+import Profile from "../Routes/Profile";
 
 export default function Switch() {
   return (
@@ -12,6 +13,7 @@ export default function Switch() {
         <Route path="/" exact element={<Home />} />
         <Route path="/create" exact element={<CreateAccount />} />
         <Route path="/login" exact element={<LogIn />} />
+        <Route path="/profile" exact element={<Profile/>}/>
         <Route path="/cart" exact element={<Cart />} />
         <Route path="/item" exact element={<Items />} />
         <Route render={() => <h1>404: page not found</h1>} />

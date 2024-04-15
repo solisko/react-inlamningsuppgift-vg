@@ -17,12 +17,14 @@ export default function LogIn() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
+        credentials: "include",
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful", data);
-        navigate("/");
+        document.cookie = `token=${data.token}; path=/`;
+        navigate("/profile");
       } else {
         const errorMessage = await response.json();
         if (errorMessage.error === "Invalid username.") {

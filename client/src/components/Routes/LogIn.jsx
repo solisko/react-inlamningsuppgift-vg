@@ -24,7 +24,7 @@ export default function LogIn() {
         const data = await response.json();
         console.log("Login successful", data);
         document.cookie = `token=${data.token}; path=/`;
-        navigate("/profile");
+        navigate("/");
       } else {
         const errorMessage = await response.json();
         if (errorMessage.error === "Invalid username.") {

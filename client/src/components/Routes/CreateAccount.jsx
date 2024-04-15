@@ -12,7 +12,7 @@ export default function CreateAccount() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/accounts", {
+      const response = await fetch("http://localhost:3000/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export default function CreateAccount() {
             Password
           </label>
           <input
-            type="password"
+            type="text"
             placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

@@ -32,18 +32,7 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-app.get("/accounts", (req, res) => {
-  db.query("SELECT * FROM accounts;", (err, result) => {
-    if (err) {
-      console.error("Error fetching accounts:", err);
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
-
-app.post("/accounts", (req, res) => {
+app.post("/create", (req, res) => {
   const { username, email, password } = req.body;
   bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
     if (err) return res.json({ Error: "Error for hashing password" });

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "../Header/header.module.css";
 import cart from "../Assets/cart.png";
+import Search from "../Routes/Search";
 
 const Navigation = () => {
   return (
@@ -26,6 +27,9 @@ const Navigation = () => {
           </button>
         </li>
       </ul>
+      <div>
+        <Search />
+      </div>
       <div className={styles.cartDiv}>
         <NavLink style={{ textDecoration: "none" }} to="/cart">
           <img src={cart} alt="" />

@@ -30,7 +30,7 @@ const Home = () => {
               >
                 <img className={styles.image} src="" alt="" />
                 <section className={styles.namePriceSection}>
-                  <h3>{product.yarnName}</h3>
+                  <h4>{product.yarnName}</h4>
                   <p>{product.yarnPrice}</p>
                 </section>
               </div>

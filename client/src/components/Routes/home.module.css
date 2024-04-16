@@ -4,8 +4,9 @@
 }
 .productCard {
   margin: 20px;
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 330px;
+  max-width: 330px;
+  /* height: 450px; */
   background-color: gray;
   position: relative;
   transition: transform 0.2s;
@@ -17,8 +18,9 @@
 .image {
   background-color: azure;
   width: 100%;
-  height: 300px;
+  height: 310px;
 }
 .namePriceSection {
   margin: 10px;
+  text-align: center;
 }

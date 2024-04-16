@@ -14,12 +14,12 @@
 .siteLogoDiv h1 {
   font-size: 50px;
 }
-
 .linksDiv {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    gap: 30px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
 }
 .cartDiv img {
   width: 40px;

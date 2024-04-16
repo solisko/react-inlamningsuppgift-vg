@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "../Header/header.module.css";
 import cart from "../Assets/cart.png";
-import Search from "../Routes/Search";
+import Search from "../Search/Search";
 
 const Navigation = () => {
   return (

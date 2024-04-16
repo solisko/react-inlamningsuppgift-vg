@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import { useLocation } from "react-router-dom";
-import styles from "./items.module.css";
+import styles from "./itemdetails.module.css";
 
 const Items = () => {
-  const { items, addToCart, cartItems } = useContext(ShopContext);
+  const { products, addToCart, cartItems } = useContext(ShopContext);
   const location = useLocation();
-  const product = items.filter((prod) => prod.yarnID === location.state.id)[0];
+  const product = products.filter((prod) => prod.yarnID === location.state.id)[0];
 
   const amountInCart = cartItems[product.yarnID];
 

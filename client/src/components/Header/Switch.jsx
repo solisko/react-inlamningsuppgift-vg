@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../Routes/Home";
-import CreateAccount from "../Routes/CreateAccount";
-import LogIn from "../Routes/LogIn";
-import Cart from "../Routes/Cart";
-import Items from "../Items/Items";
-import Profile from "../Routes/Profile";
-import Searchresult from "../Routes/Searchresult";
+import Home from "../Home/Home";
+import CreateAccount from "../Login/CreateAccount";
+import LogIn from "../Login/LogIn";
+import Cart from "../Cart/Cart";
+import Items from "../ItemDetails/ItemDetails";
+import Profile from "../Login/Profile";
+import Searchresult from "../Search/Searchresult";
 
 export default function Switch() {
   return (

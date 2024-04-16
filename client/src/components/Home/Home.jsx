@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./home.module.css";
-// import YarnList from "./YarnList";
 
 const Home = () => {
-  const { products, categories, getYarnsByCategory } = useContext(ShopContext);
+  const { products, categories } = useContext(ShopContext);
+  const navigate = useNavigate();
 
-  const getYarnByName = (category) => {
+  const groupYarnByName = (category) => {
     const yarnNames = {};
     products.forEach((product) => {
       if (product.yarnCategory === category && !yarnNames[product.yarnName]) {
@@ -24,11 +25,11 @@ const Home = () => {
           <div
             className={`${styles.categoryWrapper} row flex-nowrap overflow-auto`}
           >
-            {getYarnByName(category).map((product, index) => (
+            {groupYarnByName(category).map((product, index) => (
               <div
-                onClick={() => {
-                  handleClick(product.yarnName);
-                }}
+                onClick={() =>
+                  navigate("/yarn", { state: { name: product.yarnName } })
+                }
                 className={`${styles.productCard} col-sm-4 p-0`}
                 key={index}
               >

@@ -39,10 +39,6 @@ const ShopProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [yarnId]: prev[yarnId] - 1 }));
   };
 
-  const getYarnsByCategory = (category) => {
-    return products.filter((product) => product.yarnCategory === category);
-  };
-
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -54,7 +50,6 @@ const ShopProvider = (props) => {
         setLoggedIn,
         products,
         fetchProducts,
-        getYarnsByCategory,
         categories,
         cartItems,
         addToCart,

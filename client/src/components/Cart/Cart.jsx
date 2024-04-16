@@ -4,13 +4,13 @@ import styles from "./cart.module.css";
 import CartItems from "../CartItems/CartItems";
 
 export default function Cart() {
-  const { items, cartItems } = useContext(ShopContext);
+  const { products, cartItems } = useContext(ShopContext);
 
   const getSubtotal = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemDetails = items.find(
+        let itemDetails = products.find(
           (product) => product.yarnID === Number(item)
         );
         totalAmount += cartItems[item] * itemDetails.yarnPrice;
@@ -26,7 +26,7 @@ export default function Cart() {
         <h1>Your cart</h1>
       </div>
       <div className={styles.cartItems}>
-        {items.map((product, index) => {
+        {products.map((product, index) => {
           if (cartItems[product.yarnID] !== 0) {
             return <CartItems key={index} product={product} />;
           }

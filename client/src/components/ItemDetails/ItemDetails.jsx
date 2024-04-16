@@ -3,7 +3,7 @@ import { ShopContext } from "../../Context/ShopContextProvider";
 import { useLocation } from "react-router-dom";
 import styles from "./itemdetails.module.css";
 
-const Items = () => {
+const ItemDetails = () => {
   const { products, addToCart, cartItems } = useContext(ShopContext);
   const location = useLocation();
   const product = products.filter((prod) => prod.yarnID === location.state.id)[0];
@@ -12,48 +12,43 @@ const Items = () => {
 
   return (
     <div className={styles.itemWrapper}>
-      <button onClick={() => window.history.back()}>Back to Home</button>
+      <button onClick={() => window.history.back()}>Back</button>
       <div className={styles.itemCard}>
         {product ? (
           <>
             <h2>{product.yarnName}</h2>
             <h5>{product.yarnCategory} </h5>
-            <p>Färger:</p>
-            <ul>
-              {product.yarnColors.map((color, cIndex) => (
-                <li key={cIndex}>{color}</li>
-              ))}
-            </ul>
-            <p>Pris: {product.yarnPrice}</p>
+            <p>{product.yarnColor}</p>
+            <p>Price: {product.yarnPrice}</p>
             <section className="detailsSection">
               <table>
                 <thead>
                   <tr>
-                    <th>Detaljer</th>
+                    <th>Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      <strong>Vikt</strong>
+                      <strong>Weight</strong>
                     </td>
                     <td>{product.yarnWeight}</td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>Löplängd</strong>
+                      <strong>Length</strong>
                     </td>
                     <td>{product.yarnLength}</td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>Viktgrupp</strong>
+                      <strong>Group</strong>
                     </td>
                     <td>{product.yarnGroup}</td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>Rekomenderade nålar</strong>
+                      <strong>Recommended needles</strong>
                     </td>
                     <td>{product.yarnNeedles}</td>
                   </tr>
@@ -71,4 +66,4 @@ const Items = () => {
     </div>
   );
 };
-export default Items;
+export default ItemDetails;

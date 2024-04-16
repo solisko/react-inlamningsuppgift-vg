@@ -1,13 +1,27 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./home.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function YarnList({ category }) {
-  const { getProductsByCategory } = useContext(ShopContext);
+export default function YarnList() {
+  const { products } = useContext(ShopContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { name } = location.state;
+
+  const filteredProducts = products.filter(
+    (product) => product.yarnName === name
+  );
+
+  const handleClick = (productId) => {
+    navigate("/yarn/item", { state: { id: productId } });
+  };
 
   return (
     <div>
-        {getProductsByCategory(category).map((product, index) => (
+      <h2>{name}</h2>
+      <div>
+        {filteredProducts.map((product, index) => (
           <div
             onClick={() => {
               handleClick(product.yarnID);
@@ -22,6 +36,7 @@ export default function YarnList({ category }) {
             </section>
           </div>
         ))}
+      </div>
     </div>
   );
 }

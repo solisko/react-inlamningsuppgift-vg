@@ -48,7 +48,7 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
   db.query("SELECT * FROM products", (err, result) => {
     if (err) {
-      console.error("Error fetching accounts:", err);
+      console.error("Error fetching products:", err);
       res.status(500).json({ error: "Internal server error" });
     } else {
       res.status(200).json(result);
@@ -98,7 +98,7 @@ const verifyUser = (req, res, next) => {
       if (err) {
         res.json({ auth: false, message: "faild to authenticate" });
       } else {
-        req.userId = decoded.id;
+        req.userID = decoded.id;
         next();
       }
     });
@@ -139,12 +139,12 @@ app.post("/login", (req, res) => {
             } else if (!match) {
               res.status(401).json({ error: "Incorrect password." });
             } else {
-              const id = result[0].userId;
+              const id = result[0].userID;
               const token = jwt.sign({ id }, "jwt-secret-key-number-1", {
                 expiresIn: "1d",
               });
               req.session.user = {
-                userId: result[0].userId,
+                userId: result[0].userID,
                 username: result[0].username,
                 email: result[0].email,
               };

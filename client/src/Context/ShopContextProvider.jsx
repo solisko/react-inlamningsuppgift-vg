@@ -5,6 +5,7 @@ export const ShopContext = createContext();
 const ShopProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const emptyCart = () => {
     let cart = {};
@@ -21,6 +22,10 @@ const ShopProvider = (props) => {
       const response = await fetch("http://localhost:3000/");
       const data = await response.json();
       setProducts(data);
+      const category = [
+        ...new Set(data.map((product) => product.yarnCategory)),
+      ];
+      setCategories(category);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -34,7 +39,7 @@ const ShopProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [yarnId]: prev[yarnId] - 1 }));
   };
 
-  const getProductsByCategory = (category) => {
+  const getYarnsByCategory = (category) => {
     return products.filter((product) => product.yarnCategory === category);
   };
 
@@ -49,7 +54,8 @@ const ShopProvider = (props) => {
         setLoggedIn,
         products,
         fetchProducts,
-        getProductsByCategory,
+        getYarnsByCategory,
+        categories,
         cartItems,
         addToCart,
         removeFromCart,

@@ -24,8 +24,10 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   session({
     key: "userId",
@@ -41,6 +43,28 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+});
+
+app.get("/", (req, res) => {
+  db.query("SELECT * FROM products", (err, result) => {
+    if (err) {
+      console.error("Error fetching accounts:", err);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+app.get("/accounts", (req, res) => {
+  db.query("SELECT * FROM accounts;", (err, result) => {
+    if (err) {
+      console.error("Error fetching accounts:", err);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.status(200).json(result);
+    }
+  });
 });
 
 app.post("/create", (req, res) => {

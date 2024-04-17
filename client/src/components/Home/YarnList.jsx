@@ -34,12 +34,6 @@ export default function YarnList() {
               <h4>{product.yarnName}</h4>
               <h5>{product.yarnColor}</h5>
               <p>${product.yarnPrice}</p>
-              {/* <button onClick={() => addToCart(product.yarnID)}>
-                  Add to cart{" "}
-                  {cartItems[product.yarnID] > 0 && (
-                    <>({cartItems[product.yarnID]})</>
-                  )}
-                </button> */}
             </section>
           </div>
         ))}

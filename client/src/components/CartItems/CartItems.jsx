@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
-import styles from "../Home/home.module.css";
+// import styles from "../CartItems/cartitems.module.css";
+import styles from "../Home/home.module.css"
 
 export default function CartItems({ product }) {
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
 
   return (
-    <div className={styles.productCard}>
+    <div className={styles.productCardCart}>
       <img className={styles.image} src="" alt="" />
       <section className={styles.namePriceSection}>
         <h3>{product.yarnName}</h3>

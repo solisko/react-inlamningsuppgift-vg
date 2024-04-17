@@ -17,6 +17,15 @@
   /* position: relative; */
   transition: transform 0.2s;
 }
+.productCardCart {
+  margin: 20px;
+  min-width: 330px;
+  max-width: 330px;
+  /* height: 450px; */
+  background-color: azure;
+  /* position: relative; */
+  /* transition: transform 0.2s; */
+}
 .productCard:hover{
     cursor: pointer;
     transform: scale(1.04);

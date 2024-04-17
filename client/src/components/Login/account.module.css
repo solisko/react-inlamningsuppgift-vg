@@ -1,8 +1,7 @@
-.container{
+.container {
     padding-top: 80px;
-    
 }
-.inputWrapper{
+.inputWrapper {
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -14,12 +13,18 @@
     padding: 20px;
 }
 
-.inputs, .buttons, .labels{
+.inputs,
+.buttons,
+.labels {
     width: 400px;
     /* padding: 10px; */
     margin: 5px;
 }
-.inputs, .buttons{
+.inputs,
+.buttons {
     padding: 10px;
 }
-
+label {
+    font-size: large;
+    font-weight: bold;
+}

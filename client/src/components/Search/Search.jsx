@@ -1,15 +1,13 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ShopContext } from "../../Context/ShopContextProvider";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Search() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const { fetchProducts } = useContext(ShopContext);
 
   const handleSearch = () => {
-    fetchProducts(searchTerm);
-    navigate("/searchresult");
+    // console.log(searchTerm);
+    navigate("/searchresult", { state: { searchTerm } });
   };
 
   return (
@@ -18,9 +16,9 @@ export default function Search() {
         type="text"
         placeholder="Search here!"
         value={searchTerm}
-        onChange={() => setSearchTerm(e.target.value)}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button onClick={handleSearch}></button>
+      <button onClick={handleSearch}>Search</button>
     </div>
   );
 }

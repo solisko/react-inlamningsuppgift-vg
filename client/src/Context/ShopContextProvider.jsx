@@ -16,7 +16,7 @@ const ShopProvider = (props) => {
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState(emptyCart());
 
-  const fetchProducts = async (searchTerm = "") => {
+  const fetchProducts = async () => {
     try {
       const response = await fetch("http://localhost:3000/");
       const data = await response.json();
@@ -25,12 +25,6 @@ const ShopProvider = (props) => {
         ...new Set(data.map((product) => product.yarnCategory)),
       ];
       setCategories(category);
-      if (searchTerm) {
-        data = data.filter((yarn) =>
-          yarn.yarnName.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-      
     } catch (error) {
       console.error("Error fetching products:", error);
     }

@@ -20,18 +20,19 @@ export default function YarnList() {
   return (
     <div>
       <h2>{name}</h2>
-      <div>
+      <div className={styles.wrapper}>
         {filteredProducts.map((product, index) => (
           <div
             onClick={() => {
               handleClick(product.yarnID);
             }}
-            className={`${styles.productCard} col-sm-4 p-0`}
+            className={styles.productCard}
             key={index}
           >
             <img className={styles.image} src="" alt="" />
             <section className={styles.namePriceSection}>
               <h4>{product.yarnName}</h4>
+              <h5>{product.yarnColor}</h5>
               <p>{product.yarnPrice}</p>
             </section>
           </div>

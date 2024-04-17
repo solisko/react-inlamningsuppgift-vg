@@ -8,14 +8,14 @@ const Navigation = () => {
     <nav className={styles.navBar}>
       <div className={styles.siteLogoDiv}>
         <h1>
-          <NavLink style={{ textDecoration: "none" }} to="/home">
+          <NavLink style={{ textDecoration: "none" }} to="/">
             YarnHub
           </NavLink>
         </h1>
       </div>
       <ul className={styles.linksDiv}>
         <li>
-          <NavLink style={{ textDecoration: "none" }} to="/home">
+          <NavLink style={{ textDecoration: "none" }} to="/">
             Home
           </NavLink>
         </li>

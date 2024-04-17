@@ -19,7 +19,7 @@ const ItemDetails = () => {
             <h2>{product.yarnName}</h2>
             <h5>{product.yarnCategory} </h5>
             <p>{product.yarnColor}</p>
-            <p>Price: {product.yarnPrice}</p>
+            <p>Price: ${product.yarnPrice}</p>
             <section className="detailsSection">
               <table>
                 <thead>

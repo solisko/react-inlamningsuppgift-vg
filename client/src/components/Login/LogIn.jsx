@@ -1,12 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
-import { useContext, useEffect, useState } from "react";
-import { ShopContext } from "../../Context/ShopContextProvider";
+import { useEffect, useState } from "react";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { loggedIn, setLoggedIn } = useContext(ShopContext);
 
   const navigate = useNavigate();
 

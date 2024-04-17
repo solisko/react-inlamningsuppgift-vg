@@ -4,7 +4,7 @@ import styles from "./home.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function YarnList() {
-  const { products } = useContext(ShopContext);
+  const { products, addToCart, cartItems } = useContext(ShopContext);
   const navigate = useNavigate();
   const location = useLocation();
   const { name } = location.state;
@@ -33,7 +33,13 @@ export default function YarnList() {
             <section className={styles.namePriceSection}>
               <h4>{product.yarnName}</h4>
               <h5>{product.yarnColor}</h5>
-              <p>{product.yarnPrice}</p>
+              <p>${product.yarnPrice}</p>
+              {/* <button onClick={() => addToCart(product.yarnID)}>
+                  Add to cart{" "}
+                  {cartItems[product.yarnID] > 0 && (
+                    <>({cartItems[product.yarnID]})</>
+                  )}
+                </button> */}
             </section>
           </div>
         ))}

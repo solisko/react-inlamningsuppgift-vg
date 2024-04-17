@@ -33,6 +33,7 @@ const Navigation = () => {
       <div className={styles.cartDiv}>
         <NavLink style={{ textDecoration: "none" }} to="/cart">
           <img src={cart} alt="" />
+          <div className={styles.counter} >0</div>
         </NavLink>
       </div>
     </nav>

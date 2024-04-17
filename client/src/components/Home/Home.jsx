@@ -36,7 +36,7 @@ const Home = () => {
                 <img className={styles.image} src="" alt="" />
                 <section className={styles.namePriceSection}>
                   <h4>{product.yarnName}</h4>
-                  <p>{product.yarnPrice}</p>
+                  <p>${product.yarnPrice}</p>
                 </section>
               </div>
             ))}

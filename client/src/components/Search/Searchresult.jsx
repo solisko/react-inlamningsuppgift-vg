@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../Home/home.module.css";
 
 export default function Searchresult() {
-  const { products } = useContext(ShopContext);
+  const { products, addToCart, cartItems } = useContext(ShopContext);
+  const navigate = useNavigate();
   const location = useLocation();
   const { searchTerm } = location.state;
   const [searchResult, setSearchResult] = useState([]);
+
+  // const amountInCart = cartItems[product.yarnID];
 
   console.log(searchTerm);
 
@@ -45,7 +48,14 @@ export default function Searchresult() {
               <img className={styles.image} src="" alt="" />
               <section className={styles.namePriceSection}>
                 <h4>{product.yarnName}</h4>
-                <p>{product.yarnPrice}</p>
+                <h5>{product.yarnColor}</h5>
+                <p>${product.yarnPrice}</p>
+                <button onClick={() => addToCart(product.yarnID)}>
+                  Add to cart{" "}
+                  {cartItems[product.yarnID] > 0 && (
+                    <>({cartItems[product.yarnID]})</>
+                  )}
+                </button>
               </section>
             </div>
           ))

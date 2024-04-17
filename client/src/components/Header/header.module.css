@@ -21,6 +21,23 @@
   gap: 30px;
   margin: 0;
 }
+/* .cartDiv{
+  position: relative;
+} */
 .cartDiv img {
   width: 40px;
+}
+.counter{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -45px;
+  margin-left: 17px;
+  border-radius: 11px ;
+  /* font-size: 14px; */
+  background-color: red;
+  color: white;
 }

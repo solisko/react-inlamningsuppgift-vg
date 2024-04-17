@@ -56,20 +56,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/searchresult", (req, res) => {
-  const { query } = req.body;
-  let sqlQuery = `SELECT * FROM products WHERE yarnName LIKE ? OR yarnCategory LIKE ? OR yarnColor LIKE ?`;
-  const searchTerm = `%${query}%`;
-
-  db.query(sqlQuery, [searchTerm, searchTerm, searchTerm], (err, result) => {
-    if (err) {
-      console.error("Error fetching searchresult:", err);
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
 
 app.get("/accounts", (req, res) => {
   db.query("SELECT * FROM accounts;", (err, result) => {

@@ -2,3 +2,7 @@
     display: flex;
     /* justify-content: start; */
 }
+.emptyWrapper{
+    padding-top: 50px;
+    text-align: center;
+}

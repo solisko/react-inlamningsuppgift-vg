@@ -22,9 +22,7 @@ export default function Cart() {
   return (
     <div className={styles.cartWrapper}>
       <button onClick={() => window.history.back()}>Back</button>
-      <div>
-        <h1>Your cart</h1>
-      </div>
+      <h1>Your cart</h1>
       <div className={styles.cartItems}>
         {products.map((product, index) => {
           if (cartItems[product.yarnID] !== 0) {
@@ -39,7 +37,10 @@ export default function Cart() {
           <button>Checkout</button>
         </div>
       ) : (
-        <h2>Your cart is empty</h2>
+        <div className={styles.emptyWrapper} >
+
+          <h2>Your cart is empty</h2>
+        </div>
       )}
     </div>
   );

@@ -14,3 +14,10 @@ body {
 .content-wrapper{
   margin: 50px;
 }
+
+button{
+  background-color: pink;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin: 5px 15px;
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import styles from "../Search/search.module.css"
 
 export default function Search() {
   const navigate = useNavigate();

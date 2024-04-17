@@ -14,7 +14,10 @@
 .siteLogoDiv h1 {
   font-size: 50px;
 }
-.linksDiv {
+.wrapper{
+  display: flex;
+}
+.searchLoginDiv {
   display: flex;
   align-items: center;
   list-style: none;
@@ -35,7 +38,7 @@
   justify-content: center;
   align-items: center;
   margin-top: -45px;
-  margin-left: 17px;
+  margin-left: 15px;
   border-radius: 11px ;
   /* font-size: 14px; */
   background-color: red;

@@ -13,28 +13,21 @@ const Navigation = () => {
           </NavLink>
         </h1>
       </div>
-      <ul className={styles.linksDiv}>
-        <li>
-          <NavLink style={{ textDecoration: "none" }} to="/">
-            Home
-          </NavLink>
-        </li>
-        <li>
+      <div className={styles.wrapper} >
+        <div className={styles.searchLoginDiv}>
+          <Search />
           <button>
             <NavLink style={{ textDecoration: "none" }} to="/login">
               Log in
             </NavLink>
           </button>
-        </li>
-      </ul>
-      <div>
-        <Search />
-      </div>
-      <div className={styles.cartDiv}>
-        <NavLink style={{ textDecoration: "none" }} to="/cart">
-          <img src={cart} alt="" />
-          <div className={styles.counter} >0</div>
-        </NavLink>
+        </div>
+        <div className={styles.cartDiv}>
+          <NavLink style={{ textDecoration: "none" }} to="/cart">
+            <img src={cart} alt="" />
+            <div className={styles.counter}>0</div>
+          </NavLink>
+        </div>
       </div>
     </nav>
   );

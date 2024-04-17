@@ -6,13 +6,16 @@ import styles from "./itemdetails.module.css";
 const ItemDetails = () => {
   const { products, addToCart, cartItems } = useContext(ShopContext);
   const location = useLocation();
-  const product = products.filter((prod) => prod.yarnID === location.state.id)[0];
+  const product = products.filter(
+    (prod) => prod.yarnID === location.state.id
+  )[0];
 
   const amountInCart = cartItems[product.yarnID];
 
   return (
     <div className={styles.itemWrapper}>
       <button onClick={() => window.history.back()}>Back</button>
+      <h1>Yarn Details</h1>
       <div className={styles.itemCard}>
         {product ? (
           <>

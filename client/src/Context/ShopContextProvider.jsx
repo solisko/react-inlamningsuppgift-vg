@@ -2,19 +2,18 @@ import { createContext, useEffect, useState } from "react";
 
 export const ShopContext = createContext();
 
+const emptyCart = () => {
+  let cart = {};
+  for (let i = 1; i < 100 + 1; i++) {
+    cart[i] = 0;
+  }
+  return cart;
+};
+
 const ShopProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-
-  const emptyCart = () => {
-    let cart = {};
-    for (let i = 1; i < products.length + 1; i++) {
-      cart[i] = 0;
-    }
-    return cart;
-  };
-
   const [cartItems, setCartItems] = useState(emptyCart());
 
   const fetchProducts = async () => {

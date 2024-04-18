@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
-import { useEffect, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 
 export default function LogIn() {
-  const {loggedIn, setLoggedIn} = useEffect(ShopContext);
+  const {loggedIn, setLoggedIn} = useContext(ShopContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -56,23 +56,6 @@ export default function LogIn() {
       });
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (response.ok) {
-        setLoggedIn(false);
-        console.log("Logged out successfully!");
-      } else {
-        throw new Error("Failed to logout.");
-      }
-    } catch (error) {
-      console.error("Error logging out:", error.message);
-    }
-  };
-
   console.log(loggedIn);
 
   return (
@@ -104,7 +87,7 @@ export default function LogIn() {
         <button
           className={styles.buttons}
           onClick={() => {
-            handleLogin;
+            handleLogin()
           }}
         >Log in</button>
         <button>

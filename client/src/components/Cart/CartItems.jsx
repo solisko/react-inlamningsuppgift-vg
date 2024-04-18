@@ -6,6 +6,7 @@ import styles from "../Home/home.module.css"
 export default function CartItems({ product }) {
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
 
+
   return (
     <div className={styles.productCardCart}>
       <img className={styles.image} src="" alt="" />

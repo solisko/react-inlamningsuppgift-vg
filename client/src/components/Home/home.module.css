@@ -17,8 +17,8 @@
 }
 .productCardCart {
   margin: 20px;
-  min-width: 330px;
-  max-width: 330px;
+  min-width: 320px;
+  max-width: 320px;
   background-color: azure;
 }
 .productCard:hover{

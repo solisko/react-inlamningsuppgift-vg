@@ -56,7 +56,6 @@ app.get("/", (req, res) => {
   });
 });
 
-
 app.get("/accounts", (req, res) => {
   db.query("SELECT * FROM accounts;", (err, result) => {
     if (err) {
@@ -66,6 +65,27 @@ app.get("/accounts", (req, res) => {
       res.status(200).json(result);
     }
   });
+});
+
+app.post("/cart", (req, res) => {
+  const { yarnIDs } = req.body;
+  const yarnIDsJSON = JSON.stringify(yarnIDs);
+
+  db.query(
+    "INSERT INTO orders (yarnIDs) VALUES (?);",
+    [yarnIDsJSON],
+    (err, result) => {
+      if (err) {
+        console.error("Error creating account:", err);
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        res.status(201).json({
+          message: "Order sent successfully",
+          order: { yarnIDsJSON },
+        });
+      }
+    }
+  );
 });
 
 app.post("/create", (req, res) => {
@@ -88,34 +108,6 @@ app.post("/create", (req, res) => {
       }
     );
   });
-});
-
-const verifyUser = (req, res, next) => {
-  const token = req.headers("x-access-token");
-  if (!token) {
-    res.send("we need a token");
-  } else {
-    jwt.verify(token, "jwt-secret-key-number-1", (err, decoded) => {
-      if (err) {
-        res.json({ auth: false, message: "faild to authenticate" });
-      } else {
-        req.userID = decoded.id;
-        next();
-      }
-    });
-  }
-};
-
-app.get("/profile", verifyUser, (req, res) => {
-  res.send("You are authenticated");
-});
-
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
 });
 
 app.post("/login", (req, res) => {
@@ -158,4 +150,32 @@ app.post("/login", (req, res) => {
       }
     }
   );
+});
+
+const verifyUser = (req, res, next) => {
+  const token = req.headers("x-access-token");
+  if (!token) {
+    res.send("we need a token");
+  } else {
+    jwt.verify(token, "jwt-secret-key-number-1", (err, decoded) => {
+      if (err) {
+        res.json({ auth: false, message: "faild to authenticate" });
+      } else {
+        req.userID = decoded.id;
+        next();
+      }
+    });
+  }
+};
+
+app.get("/login", verifyUser, (req, res) => {
+  res.send("You are authenticated");
+});
+
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
 });

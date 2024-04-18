@@ -4,7 +4,10 @@ import styles from "./cart.module.css";
 import CartItems from "./CartItems";
 
 export default function Cart() {
-  const { products, cartItems } = useContext(ShopContext);
+  const { products, cartItems, getCartItemsArray } = useContext(ShopContext);
+
+  const cartItemsArray = getCartItemsArray();
+ console.log(cartItemsArray)
 
   const getSubtotal = () => {
     let totalAmount = 0;
@@ -23,7 +26,7 @@ export default function Cart() {
     <div className={styles.cartWrapper}>
       <button onClick={() => window.history.back()}>Back</button>
       <h1>Your cart</h1>
-      <div>
+      <div className={styles.wrapper} >
         {products.map((product, index) => {
           if (cartItems[product.yarnID] !== 0) {
             return <CartItems key={index} product={product} />;

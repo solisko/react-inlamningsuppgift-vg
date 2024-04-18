@@ -38,6 +38,15 @@ const ShopProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [yarnId]: prev[yarnId] - 1 }));
   };
 
+  const getCartItemsArray = () => {
+    return Object.keys(cartItems).reduce((array, currentValue) => {
+      for (let i = 0; i < cartItems[currentValue]; i++) {
+        acc.push(currentValue);
+      }
+      return array;
+    }, []);
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -53,6 +62,7 @@ const ShopProvider = (props) => {
         cartItems,
         addToCart,
         removeFromCart,
+        getCartItemsArray,
       }}
     >
       {props.children}

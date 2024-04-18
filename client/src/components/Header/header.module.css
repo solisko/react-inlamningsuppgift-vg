@@ -1,11 +1,11 @@
 .navBar {
-  min-width: 750px;
+  /* min-width: 750px; */
   /* height: 200px; */
-  display: flex;
+  /* display: flex;
   padding: 10px 30px;
   justify-content: space-between;
-  align-items: center;
-  background-color: var(--evenpaler-color);
+  align-items: center; */
+  background-color: var(--paler-color);
 }
 .siteLogoDiv {
   display: flex;

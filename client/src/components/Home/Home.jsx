@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContextProvider";
+import { Card } from "../BootstrapComps/bootstrapComps";
 import styles from "./home.module.css";
 
 const Home = () => {
@@ -26,20 +27,29 @@ const Home = () => {
             className={`${styles.categoryWrapper} row flex-nowrap overflow-auto`}
           >
             {groupYarnByName(category).map((product, index) => (
-              <div
-                onClick={() =>
-                  navigate("/yarn", { state: { name: product.yarnName } })
-                }
-                className={`${styles.productCard} col-sm-4 p-0`}
+              <Card
                 key={index}
+                onClick={() => {
+                  navigate("/yarn", { state: { name: product.yarnName } });
+                }}
+                className={`${styles.productCard} col-sm-4 p-0 shadow mb-5 rounded`}
               >
-                <img className={styles.image} src="" alt="" />
-                <section className={styles.namePriceSection}>
-                  <h4>{product.yarnName}</h4>
+                <Card.Img
+                  variant="top"
+                  src=""
+                  style={{
+                    width: "100%",
+                    height: "310px",
+                    backgroundColor: "gray",
+                  }}
+                />
+
+                <Card.Body className={styles.namePriceSection}>
+                  <Card.Title>{product.yarnName}</Card.Title>
                   <span>Press to see color options</span>
                   <span>${product.yarnPrice}</span>
-                </section>
-              </div>
+                </Card.Body>
+              </Card>
             ))}
           </div>
         </div>

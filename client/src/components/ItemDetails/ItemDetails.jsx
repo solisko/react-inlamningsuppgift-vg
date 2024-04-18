@@ -1,79 +1,118 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
-import { useLocation } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  Image,
+} from "../BootstrapComps/bootstrapComps";
 import styles from "./itemdetails.module.css";
 
 const ItemDetails = () => {
   const { products, addToCart, cartItems } = useContext(ShopContext);
   const location = useLocation();
+  const navigate = useNavigate();
   const product = products.filter(
     (prod) => prod.yarnID === location.state.id
   )[0];
 
   const amountInCart = cartItems[product.yarnID];
-  // const cartItemIDs = Object.keys(cartItems);
-  // console.log(cartItemIDs)
-
+  const goToCart = () => {
+    navigate("/cart");
+  };
   return (
-    <div className={styles.itemWrapper}>
-      <button onClick={() => window.history.back()}>Back</button>
-      <h1>Yarn Details</h1>
-      <div className={styles.itemCard}>
-        {product ? (
-          <>
-            <section className={styles.nameBtnSection}>
-              <h2>{product.yarnName}</h2>
-              <button>Go to cart</button>
-            </section>
-            <h5>
-              {product.yarnCategory.charAt(0).toUpperCase() +
-                product.yarnCategory.slice(1).toLowerCase()}
-            </h5>
-            <p>{product.yarnColor}</p>
-            <p>Price: ${product.yarnPrice}</p>
-            <section className="detailsSection">
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>Weight</strong>
-                    </td>
-                    <td>{product.yarnWeight}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Length</strong>
-                    </td>
-                    <td>{product.yarnLength}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Group</strong>
-                    </td>
-                    <td>{product.yarnGroup}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Recommended needles</strong>
-                    </td>
-                    <td>{product.yarnNeedles}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            <Button
-              // style={{ backgroundColor: "#149403", borderColor: "#149403" }}
-              onClick={() => addToCart(product.yarnID)}
-            >
-              Add to cart {amountInCart > 0 && <>({amountInCart})</>}
-            </Button>
-          </>
-        ) : (
-          <p>Product not found</p>
-        )}
-      </div>
-    </div>
+    <Container fluid className="p-0">
+      <Row className="d-flex justify-content-center">
+        <Col>
+          <Button
+            variant="outline-warning"
+            onClick={() => window.history.back()}
+          >
+            Back
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h1>Yarn Details</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Card className="shadow w-100">
+            <Card.Body>
+              {product ? (
+                <>
+                  <Row>
+                    <Col md={6}>
+                      <Card.Title>{product.yarnName}</Card.Title>
+                      <Card.Text>
+                        <strong>Fiber</strong>{" "}
+                        {product.yarnCategory.charAt(0).toUpperCase() +
+                          product.yarnCategory.slice(1).toLowerCase()}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Color</strong> {product.yarnColor}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Price</strong> ${product.yarnPrice}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Weight</strong> {product.yarnWeight}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Length</strong> {product.yarnLength}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Group</strong> {product.yarnGroup}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Recomended needles</strong>{" "}
+                        {product.yarnNeedles}
+                      </Card.Text>
+                    </Col>
+                    <Col md={6}>
+                      <div style={{
+                        width: "300px",
+                        height: "300px",
+                        backgroundColor: product.yarnColor,
+                        borderRadius: "50%", 
+                        border: "1px solid black",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}>
+                      
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row className="justify-content-end">
+                    <Col md={10}>
+                      <Button
+                        variant="warning"
+                        onClick={() => addToCart(product.yarnID)}
+                      >
+                        Add to cart {amountInCart > 0 && <>({amountInCart})</>}
+                      </Button>
+                    </Col>
+                    <Col md={2}>
+                      <Button variant="outline-warning" onClick={goToCart}>
+                        Go to cart
+                      </Button>
+                    </Col>
+                  </Row>
+                </>
+              ) : (
+                <h2>Product not found</h2>
+              )}
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default ItemDetails;

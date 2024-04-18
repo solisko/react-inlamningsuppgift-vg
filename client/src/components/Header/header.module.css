@@ -5,7 +5,7 @@
   padding: 10px 30px;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--paler-color)
+  background-color: var(--evenpaler-color);
 }
 .siteLogoDiv {
   display: flex;

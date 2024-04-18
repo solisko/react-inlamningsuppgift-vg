@@ -1,7 +1,8 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./home.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Button, Card } from "../BootstrapComps/bootstrapComps";
 
 export default function YarnList() {
   const { products, addToCart, cartItems } = useContext(ShopContext);
@@ -19,23 +20,33 @@ export default function YarnList() {
 
   return (
     <div>
-      <h2>{name}</h2>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>Back</Button>
+      <h1>{name}</h1>
       <div className={styles.wrapper}>
         {filteredProducts.map((product, index) => (
-          <div
+          <Card
             onClick={() => {
               handleClick(product.yarnID);
             }}
-            className={styles.productCard}
+            className={`${styles.productCard} shadow mb-4 rounded`}
             key={index}
           >
-            <img className={styles.image} src="" alt="" />
-            <section className={styles.namePriceSection}>
-              <h4>{product.yarnName}</h4>
-              <h5>{product.yarnColor}</h5>
-              <p>${product.yarnPrice}</p>
-            </section>
-          </div>
+            <Card.Img
+              variant="top"
+              src=""
+              style={{
+                width: "100%",
+                height: "310px",
+                backgroundColor: "gray",
+              }}
+            />
+
+            <Card.Body className={styles.namePriceSection}>
+              <Card.Title>{product.yarnName}</Card.Title>
+              <Card.Subtitle>{product.yarnColor}</Card.Subtitle>
+              <Card.Text>${product.yarnPrice}</Card.Text>
+            </Card.Body>
+          </Card>
         ))}
       </div>
     </div>

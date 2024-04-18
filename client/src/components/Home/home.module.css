@@ -3,35 +3,37 @@
   justify-content: start;
 }
 .wrapper{
-  min-width: 750px;
+  min-width: 733px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
+.clickDiv {
+  flex-shrink: 1;
+ }
 .productCard {
   margin: 20px;
   min-width: 320px;
   max-width: 320px;
-  background-color: white;
+  background-color: var(--pale-color);
   transition: transform 0.2s;
 }
 .productCardCart {
   margin: 20px;
   min-width: 320px;
   max-width: 320px;
-  background-color: azure;
+  /* background-color: azure; */
 }
 .productCard:hover{
     cursor: pointer;
     transform: scale(1.04);
 }
-.image {
+/* .image {
   background-color: gray;
   width: 100%;
   height: 310px;
-}
+} */
 .namePriceSection {
-  margin: 10px;
   text-align: center;
 }
 .namePriceSection span{

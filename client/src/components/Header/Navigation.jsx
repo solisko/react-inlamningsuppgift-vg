@@ -4,8 +4,11 @@ import cart from "../Assets/cart.png";
 import logo2 from "../Assets/logo2.png";
 import logo1 from "../Assets/logo1.png";
 import Search from "../Search/Search";
+
+import { Button } from "../BootstrapComps/bootstrapComps";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import { useContext } from "react";
+import Logout from "../Login/Logout";
 
 const Navigation = () => {
   const { cartItems, loggedIn, setLoggedIn } = useContext(ShopContext);
@@ -14,23 +17,6 @@ const Navigation = () => {
     (total, count) => total + count,
     0
   );
-
-  const handleLogout = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (response.ok) {
-        setLoggedIn(false);
-        console.log("Logged out successfully!");
-      } else {
-        throw new Error("Failed to logout.");
-      }
-    } catch (error) {
-      console.error("Error logging out:", error.message);
-    }
-  };
 
   return (
     <nav className={styles.navBar}>
@@ -43,11 +29,10 @@ const Navigation = () => {
       <div className={styles.wrapper}>
         <div className={styles.searchLoginDiv}>
           <Search />
-          <button>
-            <NavLink style={{ textDecoration: "none" }} to="/login">
-              Log in
-            </NavLink>
-          </button>
+          <NavLink style={{ textDecoration: "none" }} to="/login">
+            <Button>Log in</Button>
+          </NavLink>
+          <Logout/>
         </div>
         <div className={styles.cartDiv}>
           <NavLink style={{ textDecoration: "none" }} to="/cart">

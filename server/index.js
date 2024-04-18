@@ -39,6 +39,7 @@ app.use(
     },
   })
 );
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
@@ -70,7 +71,6 @@ app.get("/accounts", (req, res) => {
 app.post("/cart", (req, res) => {
   const { yarnIDs } = req.body;
   const yarnIDsJSON = JSON.stringify(yarnIDs);
-
   db.query(
     "INSERT INTO orders (yarnIDs) VALUES (?);",
     [yarnIDsJSON],
@@ -140,7 +140,6 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-
   db.query(
     "SELECT * FROM accounts WHERE username = ?",
     [username],
@@ -178,13 +177,14 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
+  const user = req.session.user;
   req.session.destroy((err) => {
     if (err) {
       console.error("Error logging out:", err);
       res.status(500).json({ error: "Internal server error" });
     } else {
       res.clearCookie("userId");
-      res.status(200).json({ message: "Logged out successfully!" });
+      res.status(200).json({ loggedIn: false, user });
     }
   });
 });

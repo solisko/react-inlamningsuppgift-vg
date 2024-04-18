@@ -3,6 +3,7 @@ import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./cart.module.css";
 import CartItems from "./CartItems";
 import Checkout from "../Cart/Checkout";
+import {Button} from "../BootstrapComps/bootstrapComps";
 
 export default function Cart() {
   const { products, cartItems } = useContext(ShopContext);
@@ -22,7 +23,7 @@ export default function Cart() {
 
   return (
     <div className={styles.cartWrapper}>
-      <button onClick={() => window.history.back()}>Back</button>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>Back</Button>
       <h1>Your cart</h1>
       <div className={styles.wrapper}>
         {products.map((product, index) => {
@@ -34,7 +35,7 @@ export default function Cart() {
       {getSubtotal() > 0 ? (
         <div>
           <p>Subtotal: ${getSubtotal()}</p>
-          <button>Continue shopping</button>
+          <Button variant="outline-warning" >Continue shopping</Button>
           <Checkout />
         </div>
       ) : (

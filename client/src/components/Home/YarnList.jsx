@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./home.module.css";
-import { Button, Card } from "../BootstrapComps/bootstrapComps";
+import { Button, Card, Row, Col } from "../BootstrapComps/bootstrapComps";
 
 export default function YarnList() {
   const { products, addToCart, cartItems } = useContext(ShopContext);
@@ -20,7 +20,9 @@ export default function YarnList() {
 
   return (
     <div>
-      <Button variant="outline-warning" onClick={() => window.history.back()}>Back</Button>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>
+        Back
+      </Button>
       <h1>{name}</h1>
       <div className={styles.wrapper}>
         {filteredProducts.map((product, index) => (
@@ -43,8 +45,23 @@ export default function YarnList() {
 
             <Card.Body className={styles.namePriceSection}>
               <Card.Title>{product.yarnName}</Card.Title>
-              <Card.Subtitle>{product.yarnColor}</Card.Subtitle>
-              <Card.Text>${product.yarnPrice}</Card.Text>
+              <Row>
+                <Col>
+                  <div
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      backgroundColor: product.yarnColor,
+                      borderRadius: "50%",
+                      border: "1px solid black",
+                      marginLeft: "20px",
+                    }}
+                  ></div>
+                </Col>
+                <Col>
+                  <Card.Text>${product.yarnPrice}</Card.Text>
+                </Col>
+              </Row>
             </Card.Body>
           </Card>
         ))}

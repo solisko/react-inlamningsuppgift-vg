@@ -29,5 +29,5 @@ export default function Checkout() {
     }
   };
 
-  return <Button onClick={handleCheckout}>Checkout</Button>;
+  return <Button variant="warning" onClick={handleCheckout}>Checkout</Button>;
 }

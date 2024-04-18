@@ -9,7 +9,6 @@ import {
   Col,
   Image,
 } from "../BootstrapComps/bootstrapComps";
-import styles from "./itemdetails.module.css";
 
 const ItemDetails = () => {
   const { products, addToCart, cartItems } = useContext(ShopContext);
@@ -75,18 +74,15 @@ const ItemDetails = () => {
                       </Card.Text>
                     </Col>
                     <Col md={6}>
-                      <div style={{
-                        width: "300px",
-                        height: "300px",
-                        backgroundColor: product.yarnColor,
-                        borderRadius: "50%", 
-                        border: "1px solid black",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}>
-                      
-                      </div>
+                      <div
+                        style={{
+                          width: "300px",
+                          height: "300px",
+                          backgroundColor: product.yarnColor,
+                          borderRadius: "50%",
+                          border: "1px solid black",
+                        }}
+                      ></div>
                     </Col>
                   </Row>
                   <Row className="justify-content-end">

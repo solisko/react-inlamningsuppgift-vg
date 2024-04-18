@@ -76,11 +76,11 @@ app.post("/cart", (req, res) => {
     [yarnIDsJSON],
     (err, result) => {
       if (err) {
-        console.error("Error creating account:", err);
+        console.error("Failed to create order:", err);
         res.status(500).json({ error: "Internal server error" });
       } else {
         res.status(201).json({
-          message: "Order sent successfully",
+          message: "Order sent successfully!",
           order: { yarnIDsJSON },
         });
       }
@@ -110,6 +110,34 @@ app.post("/create", (req, res) => {
   });
 });
 
+// const verifyUser = (req, res, next) => {
+//   const token = req.headers("x-access-token");
+//   if (!token) {
+//     res.send("we need a token");
+//   } else {
+//     jwt.verify(token, "jwt-secret-key-number-1", (err, decoded) => {
+//       if (err) {
+//         res.json({ auth: false, message: "faild to authenticate" });
+//       } else {
+//         req.userID = decoded.id;
+//         next();
+//       }
+//     });
+//   }
+// };
+
+// app.get("/login", verifyUser, (req, res) => {
+//   res.send("You are authenticated");
+// });
+
+app.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -132,10 +160,7 @@ app.post("/login", (req, res) => {
             } else if (!match) {
               res.status(401).json({ error: "Incorrect password." });
             } else {
-              const id = result[0].userID;
-              const token = jwt.sign({ id }, "jwt-secret-key-number-1", {
-                expiresIn: "1d",
-              });
+              req.session.loggedIn = true;
               req.session.user = {
                 userId: result[0].userID,
                 username: result[0].username,
@@ -143,7 +168,7 @@ app.post("/login", (req, res) => {
               };
               console.log(req.session.user);
 
-              res.send({ auth: true, token: token, result: req.session.user });
+              res.json({ loggedIn: true, user: req.session.user });
             }
           });
         }
@@ -152,30 +177,14 @@ app.post("/login", (req, res) => {
   );
 });
 
-const verifyUser = (req, res, next) => {
-  const token = req.headers("x-access-token");
-  if (!token) {
-    res.send("we need a token");
-  } else {
-    jwt.verify(token, "jwt-secret-key-number-1", (err, decoded) => {
-      if (err) {
-        res.json({ auth: false, message: "faild to authenticate" });
-      } else {
-        req.userID = decoded.id;
-        next();
-      }
-    });
-  }
-};
-
-app.get("/login", verifyUser, (req, res) => {
-  res.send("You are authenticated");
-});
-
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error logging out:", err);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.clearCookie("userId");
+      res.status(200).json({ message: "Logged out successfully!" });
+    }
+  });
 });

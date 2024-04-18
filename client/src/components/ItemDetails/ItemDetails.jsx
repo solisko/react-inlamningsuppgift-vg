@@ -12,8 +12,8 @@ const ItemDetails = () => {
   )[0];
 
   const amountInCart = cartItems[product.yarnID];
-  const cartItemIDs = Object.keys(cartItems);
-  console.log(cartItemIDs)
+  // const cartItemIDs = Object.keys(cartItems);
+  // console.log(cartItemIDs)
 
   return (
     <div className={styles.itemWrapper}>

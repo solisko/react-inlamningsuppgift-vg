@@ -1,16 +1,15 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useEffect } from "react";
+import { ShopContext } from "../../Context/ShopContextProvider";
 
 export default function LogIn() {
+  const {loggedIn, setLoggedIn} = useEffect(ShopContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
+  const handleLogin = async () => {
     try {
       const response = await fetch("http://localhost:3000/login", {
         method: "POST",
@@ -24,7 +23,7 @@ export default function LogIn() {
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful", data);
-        navigate("/profile", { state: { username } });
+        navigate("/");
       } else {
         const errorMessage = await response.json();
         if (errorMessage.error === "Invalid username.") {
@@ -32,7 +31,7 @@ export default function LogIn() {
         } else if (errorMessage.error === "Incorrect password.") {
           alert("Incorrect password. Please try again.");
         } else {
-          throw new Error("Failed to log in.");
+          throw new Error("Failed to login.");
         }
       }
     } catch (error) {
@@ -50,50 +49,70 @@ export default function LogIn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        setLoggedIn(data.loggedIn);
       })
       .catch((error) => {
         console.error("Error fetching login data:", error);
       });
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (response.ok) {
+        setLoggedIn(false);
+        console.log("Logged out successfully!");
+      } else {
+        throw new Error("Failed to logout.");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error.message);
+    }
+  };
+
+  console.log(loggedIn);
+
   return (
     <div className={styles.container}>
-      <form onSubmit={handleLogin}>
-        <div className={styles.inputWrapper}>
-          <label htmlFor="username" className={styles.labels}>
-            Username
-          </label>
-          <input
-            type="text"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            className={styles.inputs}
-          />
-          <label htmlFor="password" className={styles.labels}>
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength="6"
-            className={styles.inputs}
-          />
-          <button className={styles.buttons} type="submit">
-            Log in
-          </button>
-          <button>
-            <NavLink style={{ textDecoration: "none" }} to="/create">
-              Create Account
-            </NavLink>
-          </button>
-        </div>
-      </form>
+      <div className={styles.inputWrapper}>
+        <label htmlFor="username" className={styles.labels}>
+          Username
+        </label>
+        <input
+          type="text"
+          placeholder="Enter username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          className={styles.inputs}
+        />
+        <label htmlFor="password" className={styles.labels}>
+          Password
+        </label>
+        <input
+          type="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength="6"
+          className={styles.inputs}
+        />
+        <button
+          className={styles.buttons}
+          onClick={() => {
+            handleLogin;
+          }}
+        >Log in</button>
+        <button>
+          <NavLink style={{ textDecoration: "none" }} to="/create">
+            Create Account
+          </NavLink>
+        </button>
+      </div>
     </div>
   );
 }

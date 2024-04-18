@@ -41,7 +41,7 @@ const ShopProvider = (props) => {
   const getCartItemsArray = () => {
     return Object.keys(cartItems).reduce((array, currentValue) => {
       for (let i = 0; i < cartItems[currentValue]; i++) {
-        acc.push(currentValue);
+        array.push(currentValue);
       }
       return array;
     }, []);
@@ -53,7 +53,7 @@ const ShopProvider = (props) => {
 
   return (
     <ShopContext.Provider
-      value={{
+      value={{    
         loggedIn,
         setLoggedIn,
         products,

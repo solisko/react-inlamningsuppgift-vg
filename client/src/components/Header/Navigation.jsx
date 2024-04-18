@@ -4,14 +4,13 @@ import cart from "../Assets/cart.png";
 import logo2 from "../Assets/logo2.png";
 import logo1 from "../Assets/logo1.png";
 import Search from "../Search/Search";
-
 import { Button } from "../BootstrapComps/bootstrapComps";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import { useContext } from "react";
-import Logout from "../Login/Logout";
 
 const Navigation = () => {
-  const { cartItems, loggedIn, setLoggedIn } = useContext(ShopContext);
+  const { cartItems, loggedIn, setLoggedIn, handleLogout } =
+    useContext(ShopContext);
 
   const cartCount = Object.values(cartItems).reduce(
     (total, count) => total + count,
@@ -29,10 +28,13 @@ const Navigation = () => {
       <div className={styles.wrapper}>
         <div className={styles.searchLoginDiv}>
           <Search />
-          <NavLink style={{ textDecoration: "none" }} to="/login">
-            <Button>Log in</Button>
-          </NavLink>
-          <Logout/>
+          {loggedIn ? (
+            <Button onClick={handleLogout}>Log out</Button>
+          ) : (
+            <NavLink style={{ textDecoration: "none" }} to="/login">
+              <Button>Log in</Button>
+            </NavLink>
+          )}
         </div>
         <div className={styles.cartDiv}>
           <NavLink style={{ textDecoration: "none" }} to="/cart">

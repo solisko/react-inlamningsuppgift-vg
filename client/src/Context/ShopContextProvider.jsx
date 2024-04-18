@@ -47,13 +47,61 @@ const ShopProvider = (props) => {
     }, []);
   };
 
+  const handleLogin = async (username, password) => {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setLoggedIn(true);
+        console.log("Logged in successfully!", data);
+      } else {
+        const errorMessage = await response.json();
+        if (errorMessage.error === "Invalid username.") {
+          alert("Invalid username. Please try again.");
+        } else if (errorMessage.error === "Incorrect password.") {
+          alert("Incorrect password. Please try again.");
+        } else {
+          throw new Error("Failed to login.");
+        }
+      }
+    } catch (error) {
+      console.error("Error logging in:", error.message);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setLoggedIn(false);
+        console.log("Logged out successfully!", data);
+      } else {
+        throw new Error("Failed to logout.");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error.message);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
     <ShopContext.Provider
-      value={{    
+      value={{
         loggedIn,
         setLoggedIn,
         products,
@@ -63,6 +111,8 @@ const ShopProvider = (props) => {
         addToCart,
         removeFromCart,
         getCartItemsArray,
+        handleLogout,
+        handleLogin,
       }}
     >
       {props.children}

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import { useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import styles from "./itemdetails.module.css";
 
 const ItemDetails = () => {
@@ -19,17 +20,18 @@ const ItemDetails = () => {
       <div className={styles.itemCard}>
         {product ? (
           <>
-            <h2>{product.yarnName}</h2>
-            <h5>{product.yarnCategory} </h5>
+            <section className={styles.nameBtnSection}>
+              <h2>{product.yarnName}</h2>
+              <button>Go to cart</button>
+            </section>
+            <h5>
+              {product.yarnCategory.charAt(0).toUpperCase() +
+                product.yarnCategory.slice(1).toLowerCase()}
+            </h5>
             <p>{product.yarnColor}</p>
             <p>Price: ${product.yarnPrice}</p>
             <section className="detailsSection">
               <table>
-                <thead>
-                  <tr>
-                    <th>Details</th>
-                  </tr>
-                </thead>
                 <tbody>
                   <tr>
                     <td>
@@ -58,9 +60,12 @@ const ItemDetails = () => {
                 </tbody>
               </table>
             </section>
-            <button onClick={() => addToCart(product.yarnID)}>
+            <Button
+              // style={{ backgroundColor: "#149403", borderColor: "#149403" }}
+              onClick={() => addToCart(product.yarnID)}
+            >
               Add to cart {amountInCart > 0 && <>({amountInCart})</>}
-            </button>
+            </Button>
           </>
         ) : (
           <p>Product not found</p>

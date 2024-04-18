@@ -29,7 +29,7 @@ export default function Searchresult() {
   }, [searchTerm, products]);
 
   const handleClick = (productId) => {
-    navigate("/yarn/item", { state: { id: productId } });
+    navigate("/yarn/details", { state: { id: productId } });
   };
 
   return (

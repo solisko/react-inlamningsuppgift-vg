@@ -14,7 +14,7 @@ export default function YarnList() {
   );
 
   const handleClick = (productId) => {
-    navigate("/yarn/item", { state: { id: productId } });
+    navigate("/yarn/details", { state: { id: productId } });
   };
 
   return (

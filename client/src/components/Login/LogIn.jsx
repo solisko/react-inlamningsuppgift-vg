@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./account.module.css";
+import { Button } from "../BootstrapComps/bootstrapComps";
 
 export default function LogIn() {
   const { loggedIn, setLoggedIn, handleLogin } = useContext(ShopContext);
@@ -63,14 +64,12 @@ export default function LogIn() {
               minLength="6"
               className={styles.inputs}
             />
-            <button type="submit" className={styles.buttons}>
+            <Button type="submit" className={styles.buttons}>
               Log in
-            </button>
-            <button>
-              <NavLink style={{ textDecoration: "none" }} to="/create">
-                Create Account
-              </NavLink>
-            </button>
+            </Button>
+            <NavLink style={{ textDecoration: "none" }} to="/create">
+              <Button>Create Account</Button>
+            </NavLink>
           </div>
         </form>
       )}

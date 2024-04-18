@@ -2,5 +2,5 @@
   width: 100%;
   text-align: center;
   padding: 30px;
-  background-color: rgb(240, 59, 89);
+  background-color: var(--paler-color);
 }

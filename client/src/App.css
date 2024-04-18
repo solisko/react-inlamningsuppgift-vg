@@ -1,9 +1,17 @@
+:root{
+  --boot-color: #ffc107;
+  --pale-color: #ffdc73;
+  --paler-color: #ffefbe;
+  --evenpaler-color: #fffcf2;
+  /* --pink-color: #ff6daa; */
+}
+
 body {
   margin: 0;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   color: #333;
-  background-color: rgb(253, 188, 205);
+  background-color: var(--evenpaler-color);
 }
 
 .page-container {
@@ -13,11 +21,4 @@ body {
 }
 .content-wrapper{
   margin: 50px;
-}
-
-button{
-  background-color: pink;
-  border-radius: 15px;
-  padding: 5px 10px;
-  margin: 5px 15px;
 }

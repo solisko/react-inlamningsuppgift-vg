@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../Search/search.module.css";
+import {Button}from "../BootstrapComps/bootstrapComps"
 
 export default function Search() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Search() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={handleSearch}>Search</button>
+            <Button variant="outline-warning" onClick={handleSearch}>Search</Button>
         </div>
     );
 }

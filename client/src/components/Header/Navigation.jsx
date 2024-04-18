@@ -22,7 +22,7 @@ const Navigation = () => {
       <div className={styles.siteLogoDiv}>
         <NavLink style={{ textDecoration: "none" }} to="/">
           <h1>YarnHub</h1>
-          <img className={styles.logo} src={logo2} alt="" />
+          {/* <img className={styles.logo} src={logo2} alt="" /> */}
         </NavLink>
       </div>
       <div className={styles.wrapper}>
@@ -32,7 +32,7 @@ const Navigation = () => {
             <Button onClick={handleLogout}>Log out</Button>
           ) : (
             <NavLink style={{ textDecoration: "none" }} to="/login">
-              <Button>Log in</Button>
+              <Button variant="warning">Log in</Button>
             </NavLink>
           )}
         </div>

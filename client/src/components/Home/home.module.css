@@ -12,7 +12,7 @@
   margin: 20px;
   min-width: 320px;
   max-width: 320px;
-  background-color: azure;
+  background-color: white;
   transition: transform 0.2s;
 }
 .productCardCart {

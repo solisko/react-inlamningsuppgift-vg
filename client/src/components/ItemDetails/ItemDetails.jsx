@@ -14,14 +14,17 @@ const ItemDetails = () => {
   const { products, addToCart, cartItems } = useContext(ShopContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const product = products.filter(
-    (prod) => prod.yarnID === location.state.id
-  )[0];
+  
+  const productId = location.state ? location.state.id : null;
+  
+  const product = productId ? products.filter(prod => prod.yarnID === productId)[0] : null;
 
-  const amountInCart = cartItems[product.yarnID];
+  const amountInCart = product ? cartItems[product.yarnID] : 0;
+
   const goToCart = () => {
     navigate("/cart");
   };
+  
   return (
     <Container fluid className="p-0">
       <Row>
@@ -49,7 +52,9 @@ const ItemDetails = () => {
               {product ? (
                 <>
                   <Row>
-                      <Card.Title style={{ fontSize: "28px" }}><strong>{product.yarnName}</strong></Card.Title>
+                    <Card.Title style={{ fontSize: "28px" }}>
+                      <strong>{product.yarnName}</strong>
+                    </Card.Title>
                     <Col md={6}>
                       <Table striped bordered>
                         <tbody>

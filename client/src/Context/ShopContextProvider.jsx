@@ -47,6 +47,10 @@ const ShopProvider = (props) => {
     }, []);
   };
 
+  const clearCart = () => {
+    setCartItems(emptyCart());
+  };
+
   const handleLogin = async (username, password) => {
     try {
       const response = await fetch("http://localhost:3000/login", {
@@ -111,6 +115,7 @@ const ShopProvider = (props) => {
         addToCart,
         removeFromCart,
         getCartItemsArray,
+        clearCart,
         handleLogout,
         handleLogin,
       }}

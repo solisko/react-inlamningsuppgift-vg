@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContextProvider";
-import {Button} from "../BootstrapComps/bootstrapComps"
+import { Button } from "../BootstrapComps/bootstrapComps";
 
 export default function Checkout() {
-  const { getCartItemsArray } = useContext(ShopContext);
+  const { getCartItemsArray, clearCart } = useContext(ShopContext);
   const navigate = useNavigate();
 
   const handleCheckout = async () => {
@@ -24,10 +24,17 @@ export default function Checkout() {
         throw new Error(`Failed to create order: ${errorMessage}`);
       }
       console.log("Order sent successfully!");
+      clearCart();
+      alert("Order sent successfully!")
+      // navigate("/");
     } catch (error) {
       console.error("There was an error creating the order:", error.message);
     }
   };
 
-  return <Button variant="warning" onClick={handleCheckout}>Checkout</Button>;
+  return (
+    <Button variant="warning" onClick={handleCheckout}>
+      Checkout
+    </Button>
+  );
 }

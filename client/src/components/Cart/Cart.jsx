@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
-import styles from "./cart.module.css";
+import styles from "../Home/home.module.css";
 import CartItems from "./CartItems";
 import Checkout from "../Cart/Checkout";
-import {Button} from "../BootstrapComps/bootstrapComps";
+import { Button } from "../BootstrapComps/bootstrapComps";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { products, cartItems } = useContext(ShopContext);
+  const navigate = useNavigate();
 
   const getSubtotal = () => {
     let totalAmount = 0;
@@ -22,9 +24,11 @@ export default function Cart() {
   };
 
   return (
-    <div className={styles.cartWrapper}>
+    <div>
       <h1>Your cart</h1>
-      <Button variant="outline-warning" onClick={() => window.history.back()}>Back</Button>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>
+        Back
+      </Button>
       <div className={styles.wrapper}>
         {products.map((product, index) => {
           if (cartItems[product.yarnID] !== 0) {
@@ -35,7 +39,14 @@ export default function Cart() {
       {getSubtotal() > 0 ? (
         <div>
           <p>Subtotal: ${getSubtotal()}</p>
-          <Button variant="outline-warning" >Continue shopping</Button>
+          <Button
+            variant="outline-warning"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Continue shopping
+          </Button>
           <Checkout />
         </div>
       ) : (

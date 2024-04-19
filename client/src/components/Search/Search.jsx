@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../Search/search.module.css";
-import { Button } from "../BootstrapComps/bootstrapComps";
+import { Button, Nav } from "../BootstrapComps/bootstrapComps";
 
 export default function Search() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
-    navigate("/searchresult", { state: { searchTerm } });
+    if (searchTerm.trim() === "") {
+      alert("Please enter a searchterm.");
+    } else {
+      navigate("/searchresult", { state: { searchTerm } });
+    }
   };
 
   return (
-    <div>
+    <Nav>
       <input
         type="text"
         className={styles.input}
@@ -23,6 +27,6 @@ export default function Search() {
       <Button variant="outline-warning" onClick={handleSearch}>
         Search
       </Button>
-    </div>
+    </Nav>
   );
 }

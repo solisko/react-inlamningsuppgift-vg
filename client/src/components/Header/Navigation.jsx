@@ -23,7 +23,7 @@ const Navigation = () => {
   );
 
   return (
-    <Navbar className={styles.navBar} >
+    <Navbar className={`${styles.navBar} shadow-sm`} >
       <Container>
         <Navbar.Brand href="/" className={styles.siteLogoDiv}>
           <h1>YarnHub</h1>

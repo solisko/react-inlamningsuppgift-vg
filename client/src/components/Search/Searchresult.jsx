@@ -35,10 +35,10 @@ export default function Searchresult() {
 
   return (
     <div className={styles.mainCont}>
+      <h1>Search Result</h1>
       <Button variant="outline-warning" onClick={() => window.history.back()}>
         Back
       </Button>
-      <h1>Search Result</h1>
       <div className={styles.wrapper}>
         {searchResult.length ? (
           searchResult.map((product, index) => (

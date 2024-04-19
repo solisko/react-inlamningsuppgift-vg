@@ -20,10 +20,10 @@ export default function YarnList() {
 
   return (
     <div>
+      <h1>{name}</h1>
       <Button variant="outline-warning" onClick={() => window.history.back()}>
         Back
       </Button>
-      <h1>{name}</h1>
       <div className={styles.wrapper}>
         {filteredProducts.map((product, index) => (
           <Card

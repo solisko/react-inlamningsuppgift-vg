@@ -34,6 +34,7 @@ export default function LogIn() {
 
   return (
     <div className={styles.container}>
+      <h1>Login here</h1>
       {loggedIn ? (
         navigate("/")
       ) : (
@@ -64,12 +65,13 @@ export default function LogIn() {
               minLength="6"
               className={styles.inputs}
             />
-            <Button type="submit" className={styles.buttons}>
+            <Button variant="warning" type="submit" className={styles.buttons}>
               Log in
             </Button>
-            <NavLink style={{ textDecoration: "none" }} to="/create">
-              <Button>Create Account</Button>
-            </NavLink>
+            <p>Don't have an account? Create one here!</p>
+            <Button href="/create" variant="outline-warning">
+              Create Account
+            </Button>
           </div>
         </form>
       )}

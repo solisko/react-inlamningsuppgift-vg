@@ -1,30 +1,29 @@
-.container {
-    padding-top: 80px;
-}
 .inputWrapper {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: fit-content;
-    width: 500px;
-    background-color: #f4637b;
-    padding: 20px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 500px;
+  background-color: var(--pale-color);
+  padding: 20px;
 }
-
 .inputs,
 .buttons,
 .labels {
-    width: 400px;
-    /* padding: 10px; */
-    margin: 5px;
+  width: 400px;
+  /* padding: 10px; */
+  margin: 5px;
 }
 .inputs,
 .buttons {
-    padding: 10px;
+  padding: 10px;
 }
 label {
-    font-size: large;
-    font-weight: bold;
+  font-size: large;
+  font-weight: bold;
+}
+p{
+    margin: 0 0 5px;
 }

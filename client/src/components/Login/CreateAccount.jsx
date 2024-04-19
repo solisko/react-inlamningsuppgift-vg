@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
+import { Button } from "../BootstrapComps/bootstrapComps";
 
 export default function CreateAccount() {
   const [username, setUsername] = useState("");
@@ -32,6 +33,10 @@ export default function CreateAccount() {
 
   return (
     <div className={styles.container}>
+      <h1>Create account</h1>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>
+        Back
+      </Button>
       <form onSubmit={handleCreate}>
         <div className={styles.inputWrapper}>
           <label htmlFor="username" className={styles.labels}>
@@ -68,14 +73,13 @@ export default function CreateAccount() {
             minLength="6"
             className={styles.inputs}
           />
-          <button className={styles.buttons} type="submit">
+          <Button variant="warning" className={styles.buttons} type="submit">
             Create account
-          </button>
-          <button>
-            <NavLink style={{ textDecoration: "none" }} to="/login">
-              Log in
-            </NavLink>
-          </button>
+          </Button>
+          <p>Already have an account? Login here!</p>
+          <Button variant="outline-warning" href="/login">
+            Log in
+          </Button>
         </div>
       </form>
     </div>

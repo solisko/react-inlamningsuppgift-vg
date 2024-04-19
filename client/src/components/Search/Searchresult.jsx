@@ -11,19 +11,22 @@ export default function Searchresult() {
   const { searchTerm } = location.state;
   const [searchResult, setSearchResult] = useState([]);
 
-  // const amountInCart = cartItems[product.yarnID];
-
-  console.log(searchTerm);
-
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter(
         (product) =>
-          product.yarnName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          product.yarnName
+            .toLowerCase()
+            .trim()
+            .includes(searchTerm.trim().toLowerCase()) ||
           product.yarnCategory
             .toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
-          product.yarnColor.toLowerCase().includes(searchTerm.toLowerCase())
+            .trim()
+            .includes(searchTerm.trim().toLowerCase()) ||
+          product.yarnColor
+            .toLowerCase()
+            .trim()
+            .includes(searchTerm.trim().toLowerCase())
       );
       setSearchResult(filtered);
     }

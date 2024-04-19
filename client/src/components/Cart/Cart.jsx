@@ -38,7 +38,7 @@ export default function Cart() {
       </div>
       {getSubtotal() > 0 ? (
         <div>
-          <p>Subtotal: ${getSubtotal()}</p>
+          <h4>Subtotal: ${getSubtotal()}</h4>
           <Button
             variant="outline-warning"
             onClick={() => {
@@ -51,7 +51,7 @@ export default function Cart() {
         </div>
       ) : (
         <div className={styles.emptyWrapper}>
-          <h2>Your cart is empty</h2>
+          <h2>Your cart is empty!</h2>
         </div>
       )}
     </div>

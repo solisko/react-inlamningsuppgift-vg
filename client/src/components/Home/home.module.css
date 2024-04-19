@@ -40,3 +40,7 @@
 .namePriceSection span{
   padding: 0 10px;
 }
+.emptyWrapper{
+  padding-top: 50px;
+  text-align: center;
+}

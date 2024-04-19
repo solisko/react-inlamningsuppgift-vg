@@ -29,7 +29,14 @@ export default function LogIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin(username, password);
+    handleLogin(username, password)
+      .then(() => {
+        alert(`Hello ${username}! Now get to shopping!`)
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+      });
   };
 
   return (
@@ -41,7 +48,7 @@ export default function LogIn() {
       {loggedIn ? (
         navigate("/")
       ) : (
-        <form onSubmit={handleSubmit} className={styles.forms}>
+        <Form onSubmit={handleSubmit} className={styles.forms}>
           <label htmlFor="username" className={styles.labels}>
             Username
           </label>
@@ -74,7 +81,7 @@ export default function LogIn() {
           <NavLink to="/create" style={{ textDecoration: "none" }}>
             <Button variant="outline-warning">Create Account</Button>
           </NavLink>
-        </form>
+        </Form>
       )}
     </div>
   );

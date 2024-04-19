@@ -25,6 +25,7 @@ export default function CreateAccount() {
         throw new Error(`Failed to create user: ${errorMessage}`);
       }
       console.log("Account created successfully!");
+      alert("You now have an account! You are directed to the login.")
       navigate("/login");
     } catch (error) {
       console.error("There was an error creating the account:", error.message);

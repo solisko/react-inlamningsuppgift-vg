@@ -12,6 +12,7 @@ export default function Search() {
       alert("Please enter a searchterm.");
     } else {
       navigate("/searchresult", { state: { searchTerm } });
+      setSearchTerm("");
     }
   };
 

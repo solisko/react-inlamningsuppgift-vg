@@ -5,7 +5,7 @@ import styles from "./home.module.css";
 import { Button, Card, Row, Col } from "../BootstrapComps/bootstrapComps";
 
 export default function YarnList() {
-  const { products, addToCart, cartItems } = useContext(ShopContext);
+  const { products} = useContext(ShopContext);
   const navigate = useNavigate();
   const location = useLocation();
   const { name } = location.state;

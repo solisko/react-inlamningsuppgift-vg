@@ -35,6 +35,9 @@ export default function LogIn() {
   return (
     <div className={styles.container}>
       <h1>Login here</h1>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>
+        Back
+      </Button>
       {loggedIn ? (
         navigate("/")
       ) : (

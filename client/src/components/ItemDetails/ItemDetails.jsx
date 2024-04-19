@@ -7,7 +7,6 @@ import {
   Container,
   Row,
   Col,
-  Image,
 } from "../BootstrapComps/bootstrapComps";
 
 const ItemDetails = () => {
@@ -24,24 +23,27 @@ const ItemDetails = () => {
   };
   return (
     <Container fluid className="p-0">
-      <Row className="d-flex justify-content-center">
-        <Col>
-          <Button
-            variant="outline-warning"
-            onClick={() => window.history.back()}
-          >
-            Back
-          </Button>
-        </Col>
-      </Row>
       <Row>
         <Col>
           <h1>Yarn Details</h1>
         </Col>
       </Row>
       <Row>
+        <Row className="mb-4">
+          <Col>
+            <Button
+              variant="outline-warning"
+              onClick={() => window.history.back()}
+            >
+              Back
+            </Button>
+          </Col>
+        </Row>
         <Col>
-          <Card className="shadow w-100">
+          <Card
+            style={{ backgroundColor: "var(--pale-color)" }}
+            className="shadow w-100"
+          >
             <Card.Body>
               {product ? (
                 <>
@@ -80,13 +82,13 @@ const ItemDetails = () => {
                           height: "300px",
                           backgroundColor: product.yarnColor,
                           borderRadius: "50%",
-                          border: "1px solid black",
+                          border: "1px solid var(--boot-color)",
                         }}
                       ></div>
                     </Col>
                   </Row>
-                  <Row className="justify-content-end">
-                    <Col md={10}>
+                  <Row>
+                    <Col>
                       <Button
                         variant="warning"
                         onClick={() => addToCart(product.yarnID)}
@@ -94,7 +96,7 @@ const ItemDetails = () => {
                         Add to cart {amountInCart > 0 && <>({amountInCart})</>}
                       </Button>
                     </Col>
-                    <Col md={2}>
+                    <Col className="d-flex justify-content-end">
                       <Button variant="outline-warning" onClick={goToCart}>
                         Go to cart
                       </Button>

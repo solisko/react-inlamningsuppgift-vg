@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./account.module.css";
-import { Button } from "../BootstrapComps/bootstrapComps";
+import { Button, Form, Card } from "../BootstrapComps/bootstrapComps";
 
 export default function LogIn() {
   const { loggedIn, setLoggedIn, handleLogin } = useContext(ShopContext);
@@ -33,7 +33,7 @@ export default function LogIn() {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <h1>Login here</h1>
       <Button variant="outline-warning" onClick={() => window.history.back()}>
         Back
@@ -41,8 +41,7 @@ export default function LogIn() {
       {loggedIn ? (
         navigate("/")
       ) : (
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputWrapper}>
+        <Form onSubmit={handleSubmit} className={styles.forms}>
             <label htmlFor="username" className={styles.labels}>
               Username
             </label>
@@ -75,8 +74,7 @@ export default function LogIn() {
             <Button href="/create" variant="outline-warning">
               Create Account
             </Button>
-          </div>
-        </form>
+        </Form>
       )}
     </div>
   );

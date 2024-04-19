@@ -23,22 +23,24 @@ const Navigation = () => {
   );
 
   return (
-    <Navbar className={`${styles.navBar} shadow-sm`} >
+    <Navbar className={`${styles.navBar} shadow-sm`}>
       <Container>
-        <Navbar.Brand href="/" className={styles.siteLogoDiv}>
-          <h1>YarnHub</h1>
-        </Navbar.Brand>
+        <NavLink to="/" className={styles.siteLogoDiv}>
+          <Navbar.Brand className={styles.siteLogoDiv}>
+            <h1>YarnHub</h1>
+          </Navbar.Brand>
+        </NavLink>
         <Nav className={styles.searchLoginDiv}>
           <Search />
           {loggedIn ? (
             <Button onClick={handleLogout}>Log out</Button>
           ) : (
-            <NavLink style={{ textDecoration: "none" }} to="/login">
+            <NavLink to="/login" style={{ textDecoration: "none" }}>
               <Button variant="warning">Log in</Button>
             </NavLink>
           )}
           <div className={styles.cartDiv}>
-            <NavLink style={{ textDecoration: "none" }} to="/cart">
+            <NavLink to="/cart" style={{ textDecoration: "none" }}>
               <img src={cart} alt="" />
               <div className={styles.counter}>{cartCount}</div>
             </NavLink>

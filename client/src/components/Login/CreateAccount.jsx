@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
-import { Button } from "../BootstrapComps/bootstrapComps";
+import { Button, Form, Container } from "../BootstrapComps/bootstrapComps";
 
 export default function CreateAccount() {
   const [username, setUsername] = useState("");
@@ -32,56 +32,55 @@ export default function CreateAccount() {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <h1>Create account</h1>
       <Button variant="outline-warning" onClick={() => window.history.back()}>
         Back
       </Button>
-      <form onSubmit={handleCreate}>
-        <div className={styles.inputWrapper}>
-          <label htmlFor="username" className={styles.labels}>
-            Username
-          </label>
-          <input
-            type="text"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            className={styles.inputs}
-          />
-          <label htmlFor="email" className={styles.labels}>
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className={styles.inputs}
-          />
-          <label htmlFor="password" className={styles.labels}>
-            Password
-          </label>
-          <input
-            type="text"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength="6"
-            className={styles.inputs}
-          />
-          <Button variant="warning" className={styles.buttons} type="submit">
-            Create account
-          </Button>
-          <p>Already have an account? Login here!</p>
-          <Button variant="outline-warning" href="/login">
-            Log in
-          </Button>
-        </div>
-      </form>
+      <Form onSubmit={handleCreate} className={styles.forms}>
+        <Form.Label htmlFor="username" className={styles.labels}>
+          Username
+        </Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter username.."
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          className={styles.inputs}
+        />
+        <Form.Label htmlFor="email" className={styles.labels}>
+          Email
+        </Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter email.."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className={styles.inputs}
+        />
+        <Form.Label htmlFor="password" className={styles.labels}>
+          Password
+        </Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter password.."
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength="6"
+          className={styles.inputs}
+        />
+
+        <Button variant="warning" className={styles.buttons} type="submit">
+          Create account
+        </Button>
+        <p>Already have an account? Login here!</p>
+        <Button variant="outline-warning" href="/login">
+          Log in
+        </Button>
+      </Form>
     </div>
   );
 }

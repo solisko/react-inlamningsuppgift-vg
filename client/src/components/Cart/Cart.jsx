@@ -23,8 +23,8 @@ export default function Cart() {
 
   return (
     <div className={styles.cartWrapper}>
-      <Button variant="outline-warning" onClick={() => window.history.back()}>Back</Button>
       <h1>Your cart</h1>
+      <Button variant="outline-warning" onClick={() => window.history.back()}>Back</Button>
       <div className={styles.wrapper}>
         {products.map((product, index) => {
           if (cartItems[product.yarnID] !== 0) {

@@ -1,4 +1,4 @@
-.inputWrapper {
+.forms {
   margin: 50px auto;
   display: flex;
   flex-direction: column;
@@ -8,12 +8,12 @@
   width: 500px;
   background-color: var(--pale-color);
   padding: 20px;
+  border-radius: 5px;
 }
 .inputs,
 .buttons,
 .labels {
   width: 400px;
-  /* padding: 10px; */
   margin: 5px;
 }
 .inputs,

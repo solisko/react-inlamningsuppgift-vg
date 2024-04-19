@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/NavBar"
+import Table from "react-bootstrap/Table"
 
 
-export { Button, Form, Card, Image, Container, Row, Col, Nav, Navbar };
+export { Button, Form, Card, Image, Container, Row, Col, Nav, Navbar, Table };

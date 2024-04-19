@@ -7,6 +7,7 @@ import {
   Container,
   Row,
   Col,
+  Table,
 } from "../BootstrapComps/bootstrapComps";
 
 const ItemDetails = () => {
@@ -48,38 +49,63 @@ const ItemDetails = () => {
               {product ? (
                 <>
                   <Row>
+                      <Card.Title style={{ fontSize: "28px" }}><strong>{product.yarnName}</strong></Card.Title>
                     <Col md={6}>
-                      <Card.Title>{product.yarnName}</Card.Title>
-                      <Card.Text>
-                        <strong>Fiber</strong>{" "}
-                        {product.yarnCategory.charAt(0).toUpperCase() +
-                          product.yarnCategory.slice(1).toLowerCase()}
-                      </Card.Text>
-                      <Card.Text>
-                        <strong>Color</strong> {product.yarnColor}
-                      </Card.Text>
-                      <Card.Text>
-                        <strong>Price</strong> ${product.yarnPrice}
-                      </Card.Text>
-                      <Card.Text>
-                        <strong>Weight</strong> {product.yarnWeight}
-                      </Card.Text>
-                      <Card.Text>
-                        <strong>Length</strong> {product.yarnLength}
-                      </Card.Text>
-                      <Card.Text>
-                        <strong>Group</strong> {product.yarnGroup}
-                      </Card.Text>
-                      <Card.Text>
-                        <strong>Recomended needles</strong>{" "}
-                        {product.yarnNeedles}
-                      </Card.Text>
+                      <Table striped bordered>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <strong>Fiber</strong>
+                            </td>
+                            <td>
+                              {product.yarnCategory.charAt(0).toUpperCase() +
+                                product.yarnCategory.slice(1).toLowerCase()}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Color</strong>
+                            </td>
+                            <td>{product.yarnColor}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Price</strong>
+                            </td>
+                            <td>${product.yarnPrice}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Weight</strong>
+                            </td>
+                            <td>{product.yarnWeight}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Length</strong>
+                            </td>
+                            <td>{product.yarnLength}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Group</strong>
+                            </td>
+                            <td>{product.yarnGroup}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Recomended needles</strong>
+                            </td>
+                            <td>{product.yarnNeedles}</td>
+                          </tr>
+                        </tbody>
+                      </Table>
                     </Col>
                     <Col md={6}>
                       <div
                         style={{
-                          width: "300px",
-                          height: "300px",
+                          width: "280px",
+                          height: "280px",
                           backgroundColor: product.yarnColor,
                           borderRadius: "50%",
                           border: "1px solid var(--boot-color)",

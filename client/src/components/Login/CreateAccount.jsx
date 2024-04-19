@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./account.module.css";
 import { Button, Form, Container } from "../BootstrapComps/bootstrapComps";
 
@@ -77,9 +77,9 @@ export default function CreateAccount() {
           Create account
         </Button>
         <p>Already have an account? Login here!</p>
-        <Button variant="outline-warning" href="/login">
-          Log in
-        </Button>
+        <NavLink to="/login" style={{ textDecoration: "none" }}>
+          <Button variant="outline-warning">Log in</Button>
+        </NavLink>
       </Form>
     </div>
   );

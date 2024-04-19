@@ -42,38 +42,38 @@ export default function LogIn() {
         navigate("/")
       ) : (
         <Form onSubmit={handleSubmit} className={styles.forms}>
-            <label htmlFor="username" className={styles.labels}>
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              className={styles.inputs}
-            />
-            <label htmlFor="password" className={styles.labels}>
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength="6"
-              className={styles.inputs}
-            />
-            <Button variant="warning" type="submit" className={styles.buttons}>
-              Log in
-            </Button>
-            <p>Don't have an account? Create one here!</p>
-            <Button href="/create" variant="outline-warning">
-              Create Account
-            </Button>
+          <label htmlFor="username" className={styles.labels}>
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className={styles.inputs}
+          />
+          <label htmlFor="password" className={styles.labels}>
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength="6"
+            className={styles.inputs}
+          />
+          <Button variant="warning" type="submit" className={styles.buttons}>
+            Log in
+          </Button>
+          <p>Don't have an account? Create one here!</p>
+          <NavLink to="/create" style={{ textDecoration: "none" }}>
+            <Button variant="outline-warning">Create Account</Button>
+          </NavLink>
         </Form>
       )}
     </div>

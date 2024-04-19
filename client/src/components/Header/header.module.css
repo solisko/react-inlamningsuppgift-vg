@@ -1,39 +1,24 @@
 .navBar {
-  /* min-width: 750px; */
-  /* height: 200px; */
-  /* display: flex;
-  padding: 10px 30px;
-  justify-content: space-between;
-  align-items: center; */
+  padding: 30px;
+  text-align: center;
   background-color: var(--paler-color);
 }
-.siteLogoDiv {
+
+.wrapper {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
 }
-.siteLogoDiv h1 {
-  font-size: 50px;
-}
-/* .logo{
-  background-color: transparent;
-} */
-.wrapper{
+.loginCartDiv{
   display: flex;
 }
-.searchLoginDiv {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 30px;
-  margin: 0;
+.cartDiv{
+  margin-left: 40px;
 }
-/* .cartDiv{
-  position: relative;
-} */
 .cartDiv img {
   width: 40px;
 }
-.counter{
+.counter {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -42,8 +27,7 @@
   align-items: center;
   margin-top: -45px;
   margin-left: 15px;
-  border-radius: 11px ;
-  /* font-size: 14px; */
+  border-radius: 11px;
   background-color: rgb(255, 57, 57);
   color: white;
 }

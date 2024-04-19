@@ -41,7 +41,7 @@ export default function LogIn() {
       {loggedIn ? (
         navigate("/")
       ) : (
-        <Form onSubmit={handleSubmit} className={styles.forms}>
+        <form onSubmit={handleSubmit} className={styles.forms}>
           <label htmlFor="username" className={styles.labels}>
             Username
           </label>
@@ -74,7 +74,7 @@ export default function LogIn() {
           <NavLink to="/create" style={{ textDecoration: "none" }}>
             <Button variant="outline-warning">Create Account</Button>
           </NavLink>
-        </Form>
+        </form>
       )}
     </div>
   );

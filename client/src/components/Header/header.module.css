@@ -2,6 +2,7 @@
   padding: 30px;
   text-align: center;
   background-color: var(--paler-color);
+  box-shadow: 4px 4px 8px rgb(0, 0, 0, 0.2);
 }
 
 .wrapper {

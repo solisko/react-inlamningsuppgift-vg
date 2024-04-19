@@ -3,9 +3,10 @@ import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "./home.module.css";
 import { Button, Card, Row, Col } from "../BootstrapComps/bootstrapComps";
+import { GiYarn } from "react-icons/gi";
 
 export default function YarnList() {
-  const { products} = useContext(ShopContext);
+  const { products } = useContext(ShopContext);
   const navigate = useNavigate();
   const location = useLocation();
   const { name } = location.state;
@@ -47,16 +48,13 @@ export default function YarnList() {
               <Card.Title>{product.yarnName}</Card.Title>
               <Row>
                 <Col>
-                  <div
+                  <GiYarn
+                    color={product.yarnColor}
                     style={{
-                      width: "30px",
-                      height: "30px",
-                      backgroundColor: product.yarnColor,
-                      borderRadius: "50%",
-                      border: "1px solid black",
-                      marginLeft: "20px",
+                      width: "35px",
+                      height: "35px",
                     }}
-                  ></div>
+                  />
                 </Col>
                 <Col>
                   <Card.Text>${product.yarnPrice}</Card.Text>

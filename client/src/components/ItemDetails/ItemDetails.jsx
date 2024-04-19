@@ -9,22 +9,25 @@ import {
   Col,
   Table,
 } from "../BootstrapComps/bootstrapComps";
+import { GiYarn } from "react-icons/gi";
 
 const ItemDetails = () => {
   const { products, addToCart, cartItems } = useContext(ShopContext);
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const productId = location.state ? location.state.id : null;
-  
-  const product = productId ? products.filter(prod => prod.yarnID === productId)[0] : null;
+
+  const product = productId
+    ? products.filter((prod) => prod.yarnID === productId)[0]
+    : null;
 
   const amountInCart = product ? cartItems[product.yarnID] : 0;
 
   const goToCart = () => {
     navigate("/cart");
   };
-  
+
   return (
     <Container fluid className="p-0">
       <Row>
@@ -43,7 +46,7 @@ const ItemDetails = () => {
             </Button>
           </Col>
         </Row>
-        <Col xs={12} md={8} lg={8} className="mx-auto">
+        <Col xs={12} md={12} lg={8} className="mx-auto">
           <Card
             style={{ backgroundColor: "var(--pale-color)" }}
             className="shadow w-100"
@@ -95,7 +98,10 @@ const ItemDetails = () => {
                             <td>
                               <strong>Group</strong>
                             </td>
-                            <td>{product.yarnGroup}</td>
+                            <td>
+                              {product.yarnGroup.charAt(0).toUpperCase() +
+                                product.yarnGroup.slice(1).toLowerCase()}
+                            </td>
                           </tr>
                           <tr>
                             <td>
@@ -106,16 +112,14 @@ const ItemDetails = () => {
                         </tbody>
                       </Table>
                     </Col>
-                    <Col md={6} className="d-flex justify-content-center align-items-center">
-                      <div
+                    <Col md={6} className="d-flex justify-content-center">
+                      <GiYarn
+                        color={product.yarnColor}
                         style={{
-                          width: "280px",
-                          height: "280px",
-                          backgroundColor: product.yarnColor,
-                          borderRadius: "50%",
-                          border: "1px solid var(--boot-color)",
+                          width: "270px",
+                          height: "270px",
                         }}
-                      ></div>
+                      />
                     </Col>
                   </Row>
                   <Row>

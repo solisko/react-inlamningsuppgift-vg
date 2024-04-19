@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "../Home/home.module.css";
 import { Card, Button, Row, Col } from "../BootstrapComps/bootstrapComps";
+import { GiYarn } from "react-icons/gi";
 
 export default function CartItems({ product }) {
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
@@ -21,16 +22,13 @@ export default function CartItems({ product }) {
         <Card.Title>{product.yarnName}</Card.Title>
         <Row>
           <Col>
-            <div
+            <GiYarn
+              color={product.yarnColor}
               style={{
-                width: "30px",
-                height: "30px",
-                backgroundColor: product.yarnColor,
-                borderRadius: "50%",
-                border: "1px solid black",
-                marginLeft: "20px"
+                width: "35px",
+                height: "35px",
               }}
-            ></div>
+            />
           </Col>
 
           <Col>

@@ -39,15 +39,16 @@ export default function Cart() {
       {getSubtotal() > 0 ? (
         <div>
           <h4>Subtotal: ${getSubtotal()}</h4>
+          <Checkout />
           <Button
             variant="outline-warning"
             onClick={() => {
               navigate("/");
             }}
+            style={{marginLeft: "80px"}}
           >
             Continue shopping
           </Button>
-          <Checkout />
         </div>
       ) : (
         <div className={styles.emptyWrapper}>

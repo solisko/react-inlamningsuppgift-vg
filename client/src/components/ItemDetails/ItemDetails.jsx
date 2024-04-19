@@ -43,7 +43,7 @@ const ItemDetails = () => {
             </Button>
           </Col>
         </Row>
-        <Col>
+        <Col xs={12} md={8} lg={8} className="mx-auto">
           <Card
             style={{ backgroundColor: "var(--pale-color)" }}
             className="shadow w-100"
@@ -106,7 +106,7 @@ const ItemDetails = () => {
                         </tbody>
                       </Table>
                     </Col>
-                    <Col md={6}>
+                    <Col md={6} className="d-flex justify-content-center align-items-center">
                       <div
                         style={{
                           width: "280px",

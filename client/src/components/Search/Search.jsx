@@ -16,6 +16,12 @@ export default function Search() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <Nav>
       <input
@@ -24,6 +30,7 @@ export default function Search() {
         placeholder="Search for yarn here!"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <Button variant="outline-warning" onClick={handleSearch}>
         Search

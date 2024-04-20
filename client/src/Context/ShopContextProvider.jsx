@@ -11,10 +11,16 @@ const emptyCart = () => {
 };
 
 const ShopProvider = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(() => {
+    const isLoggedIn = localStorage.getItem("loggedIn");
+    return isLoggedIn ? JSON.parse(isLoggedIn) : false;
+  });
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [cartItems, setCartItems] = useState(emptyCart());
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    return storedCartItems ? JSON.parse(storedCartItems) : emptyCart();
+  });
 
   const fetchProducts = async () => {
     try {
@@ -29,6 +35,10 @@ const ShopProvider = (props) => {
       console.error("Error fetching products:", error);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (yarnId) => {
     setCartItems((prev) => ({ ...prev, [yarnId]: prev[yarnId] + 1 }));
@@ -49,6 +59,7 @@ const ShopProvider = (props) => {
 
   const clearCart = () => {
     setCartItems(emptyCart());
+    localStorage.removeItem("cartItems");
   };
 
   const handleLogin = async (username, password) => {
@@ -64,6 +75,7 @@ const ShopProvider = (props) => {
 
       if (response.ok) {
         const data = await response.json();
+        localStorage.setItem("loggedIn", true);
         setLoggedIn(true);
         console.log("Logged in successfully!", data);
       } else {
@@ -89,6 +101,7 @@ const ShopProvider = (props) => {
       });
       if (response.ok) {
         const data = await response.json();
+        localStorage.removeItem("loggedIn");
         setLoggedIn(false);
         console.log("Logged out successfully!", data);
       } else {
@@ -116,6 +129,7 @@ const ShopProvider = (props) => {
         removeFromCart,
         getCartItemsArray,
         clearCart,
+        setCartItems,
         handleLogout,
         handleLogin,
       }}

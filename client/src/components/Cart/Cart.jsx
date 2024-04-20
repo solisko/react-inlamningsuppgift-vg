@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ShopContext } from "../../Context/ShopContextProvider";
 import styles from "../Home/home.module.css";
 import CartItems from "./CartItems";
@@ -7,17 +7,26 @@ import { Button } from "../BootstrapComps/bootstrapComps";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { products, cartItems } = useContext(ShopContext);
+  const { products, cartItems, fetchProducts } = useContext(ShopContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   const getSubtotal = () => {
+    if (!products || products.length === 0) {
+      return 0;
+    }
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemDetails = products.find(
           (product) => product.yarnID === Number(item)
         );
-        totalAmount += cartItems[item] * itemDetails.yarnPrice;
+        if (itemDetails) {
+          totalAmount += cartItems[item] * itemDetails.yarnPrice;
+        }
       }
     }
     return totalAmount;
@@ -45,7 +54,7 @@ export default function Cart() {
             onClick={() => {
               navigate("/");
             }}
-            style={{marginLeft: "80px"}}
+            style={{ marginLeft: "80px" }}
           >
             Continue shopping
           </Button>
